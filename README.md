@@ -1,4 +1,6 @@
-lf
-==
+Linkfloyd PHP
+=============
 
-A Symfony project created on October 30, 2016, 5:50 pm.
+## Installation
+
+* Install PHP >= 7.0
