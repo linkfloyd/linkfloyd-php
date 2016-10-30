@@ -1,10 +1,10 @@
 {
-    "name": "guven/lf",
-    "license": "proprietary",
+    "name": "linkfloyd/linkfloyd-php",
+    "license": "GPL-3.0",
     "type": "project",
     "autoload": {
         "psr-4": {
-            "": "src/"
+            "Linkfloyd\\": "src/Linkfloyd"
         },
         "classmap": [
             "app/AppKernel.php",
