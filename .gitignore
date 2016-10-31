@@ -65,3 +65,5 @@
 # Backup entities generated with doctrine:generate:entities command
 */Entity/*~
 .idea
+node_modules
+bower_components
