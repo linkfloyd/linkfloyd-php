@@ -1,4 +1,4 @@
-frontend_homepage:
+homepage:
     path:     /
     defaults: { _controller: FrontendBundle:Default:index }
 

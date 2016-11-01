@@ -3,5 +3,7 @@
 {% block title %}FrontendBundle:User:login{% endblock %}
 
 {% block body %}
-<h1>Welcome to the User:login page</h1>
+    {{ form_start(form, {'attr': {'class': 'my-form-class'} }) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
 {% endblock %}
