@@ -5,12 +5,31 @@ Linkfloyd PHP
 
 * Install PHP >= 7.0
 
+
+    apt-get install php7.0 php7.0-mbstring php7.0-mcrypt php7.0-pdo # and other things that i dont know yet
+    
+* Check requirements satisfied
+
+    
+    php bin/symfony_requirements     
+    
+* Download composer
+
+
+    https://getcomposer.org/download/
+    
+* Install Symfony dependencies    
+
+
+    composer install
+
 * To Run migrations
 
 
     php bin/console doctrine:migrations:migrate
     
 * Load sample data
+
 
     php bin/console doctrine:fixtures:load
     
