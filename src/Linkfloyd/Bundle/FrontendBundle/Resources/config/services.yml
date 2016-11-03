@@ -1,4 +1,8 @@
 services:
-#    frontend.example:
-#        class: Linkfloyd\Bundle\FrontendBundle\Example
-#        arguments: ["@service_id", "plain_value", "%parameter%"]
+    linkfloyd.frontend.service.link_service:
+        class: Linkfloyd\Bundle\FrontendBundle\Service\LinkService
+        arguments: ["@doctrine.orm.entity_manager"]
+
+    linkfloyd.frontend.service.media_service:
+        class: Linkfloyd\Bundle\FrontendBundle\Service\MediaService
+        arguments: ["@doctrine.orm.entity_manager"]
