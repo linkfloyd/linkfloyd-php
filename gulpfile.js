@@ -1,0 +1,16 @@
+process.env.DISABLE_NOTIFIER = true;
+var elixir = require('laravel-elixir');
+
+elixir(function(mix) {
+
+    mix.scripts([
+        '/jquery/dist/jquery.min.js',
+        '/bootstrap/dist/js/bootstrap.min.js',
+    ], 'web/assets/js/scripts.js', 'bower_components');
+
+    mix.styles([
+        '/bootstrap/dist/css/bootstrap.min.css',
+    ], 'web/assets/css/stylesheets.css', 'bower_components');
+
+    mix.copy('bower_components/bootstrap/dist/fonts', 'web/assets/fonts');
+});

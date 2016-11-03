@@ -1,0 +1,4 @@
+services:
+    linkfloyd.user_bundle.user_manager:
+        class: Linkfloyd\Bundle\UserBundle\Manager\UserManager
+        arguments: ["@fos_user.user_manager.default", "@event_dispatcher"]

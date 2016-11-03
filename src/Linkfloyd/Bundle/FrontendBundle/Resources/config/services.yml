@@ -1,0 +1,4 @@
+services:
+#    frontend.example:
+#        class: Linkfloyd\Bundle\FrontendBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
