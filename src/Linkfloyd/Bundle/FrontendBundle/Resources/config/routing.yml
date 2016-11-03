@@ -1,15 +1,3 @@
 homepage:
     path:     /
     defaults: { _controller: FrontendBundle:Default:index }
-
-login:
-    path:     /login
-    defaults: { _controller: FrontendBundle:User:login }
-
-register:
-    path:     /register
-    defaults: { _controller: FrontendBundle:User:register }
-
-logout:
-    path:     /logout
-    defaults: { _controller: FrontendBundle:User:logout }
