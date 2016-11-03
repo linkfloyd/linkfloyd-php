@@ -23,6 +23,7 @@ class AppKernel extends Kernel
             //new FOS\CommentBundle\FOSCommentBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle($this),
             new Linkfloyd\Bundle\UserBundle\UserBundle(),
+            new Linkfloyd\Bundle\FrontendBundle\FrontendBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

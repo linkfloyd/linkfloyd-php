@@ -1,0 +1,5 @@
+form:
+  login:
+    labels:
+      username: Kullanıcı Adı
+      password: Parola
