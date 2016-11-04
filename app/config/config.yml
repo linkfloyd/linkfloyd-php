@@ -4,6 +4,7 @@ imports:
     - { resource: services.yml }
     - { resource: doctrine_extensions.yml }
     - { resource: "@LinkfloydCoreBundle/Resources/config/services.yml" }
+    - { resource: "@LinkfloydApiBundle/Resources/config/services.yml" }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
@@ -79,3 +80,20 @@ doctrine_migrations:
     namespace: Application\Migrations
     table_name: migration_versions
     name: Linkfloyd Migrations
+
+fos_rest:
+    routing_loader:
+        default_format: json                            # All responses should be JSON formated
+        include_format: false                           # We do not include format in request, so that all responses
+                                                        # will eventually be JSON formated
+fos_oauth_server:
+    db_driver:           orm
+    client_class:        Linkfloyd\Bundle\ApiBundle\Entity\Client
+    access_token_class:  Linkfloyd\Bundle\ApiBundle\Entity\AccessToken
+    refresh_token_class: Linkfloyd\Bundle\ApiBundle\Entity\RefreshToken
+    auth_code_class:     Linkfloyd\Bundle\ApiBundle\Entity\AuthCode
+    service:
+        #user_provider: fos_user.user_manager             # This property will be used when valid credentials are given to load the user upon access token creation
+        user_provider: fos_user.user_provider.username             # This property will be used when valid credentials are given to load the user upon access token creation
+
+nelmio_api_doc: ~

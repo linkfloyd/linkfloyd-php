@@ -1,6 +1,20 @@
-frontend:
+linkfloyd_core:
     resource: "@LinkfloydCoreBundle/Resources/config/routing.yml"
     prefix:   /
 
+linkfloyd_api:
+    resource: "@LinkfloydApiBundle/Resources/config/routing.yml"
+    prefix:   /api
+
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /api/doc
+
+fos_oauth_server_token:
+    resource: "@FOSOAuthServerBundle/Resources/config/routing/token.xml"
+
+fos_oauth_server_authorize:
+    resource: "@FOSOAuthServerBundle/Resources/config/routing/authorize.xml"
