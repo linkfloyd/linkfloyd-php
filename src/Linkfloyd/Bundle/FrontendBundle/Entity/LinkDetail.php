@@ -1,15 +1,22 @@
 <?php
 namespace Linkfloyd\Bundle\FrontendBundle\Entity;
 
+use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 /**
  * @author Guven Atbakan <guven@atbakan.com>
  * @ORM\Entity
- * @ORM\Table(name="links", indexes={@ORM\Index(name="thumbnail_media_id_index", columns={"thumbnail_media_id"})})
+ * @ORM\Table(name="link_details", indexes={@ORM\Index(name="thumbnail_media_id_index", columns={"thumbnail_media_id"})})
  */
-class Link
+class LinkDetail
 {
+    /**
+     * adds created_at, updated_at columns
+     */
+    use TimestampableEntity;
+
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
