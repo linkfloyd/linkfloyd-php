@@ -1,13 +1,15 @@
 <?php
 
-namespace Linkfloyd\Bundle\FrontendBundle\Service;
+namespace Linkfloyd\Bundle\CoreBundle\Service;
+
+use Doctrine\ORM\EntityManagerInterface;
 
 /**
  * @author Guven Atbakan <guven@atbakan.com>
  */
-class MediaService
+class LinkService
 {
-
+    
     /**
      * @var EntityManagerInterface
      */

@@ -1,6 +1,6 @@
 <?php
 
-namespace Linkfloyd\Bundle\FrontendBundle\Tests\Controller;
+namespace Linkfloyd\Bundle\CoreBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 

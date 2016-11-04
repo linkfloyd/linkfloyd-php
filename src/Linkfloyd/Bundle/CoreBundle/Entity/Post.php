@@ -3,7 +3,7 @@
  * @author Guven Atbakan <guven@atbakan.com>
  */
 
-namespace Linkfloyd\Bundle\FrontendBundle\Entity;
+namespace Linkfloyd\Bundle\CoreBundle\Entity;
 
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
@@ -39,7 +39,7 @@ class Post
     /**
      * @var LinkDetail|null
      *
-     * @ORM\ManyToOne(targetEntity="Linkfloyd\Bundle\FrontendBundle\Entity\LinkDetail")
+     * @ORM\ManyToOne(targetEntity="Linkfloyd\Bundle\CoreBundle\Entity\LinkDetail")
      * @ORM\JoinColumn(name="link_detail_id", referencedColumnName="id", nullable=true)
      */
     private $linkDetail;
@@ -81,11 +81,11 @@ class Post
     /**
      * Set linkDetail
      *
-     * @param \Linkfloyd\Bundle\FrontendBundle\Entity\LinkDetail $linkDetail
+     * @param \Linkfloyd\Bundle\CoreBundle\Entity\LinkDetail $linkDetail
      *
      * @return Post
      */
-    public function setLinkDetail(\Linkfloyd\Bundle\FrontendBundle\Entity\LinkDetail $linkDetail = null)
+    public function setLinkDetail(\Linkfloyd\Bundle\CoreBundle\Entity\LinkDetail $linkDetail = null)
     {
         $this->linkDetail = $linkDetail;
 
@@ -95,7 +95,7 @@ class Post
     /**
      * Get linkDetail
      *
-     * @return \Linkfloyd\Bundle\FrontendBundle\Entity\LinkDetail
+     * @return \Linkfloyd\Bundle\CoreBundle\Entity\LinkDetail
      */
     public function getLinkDetail()
     {

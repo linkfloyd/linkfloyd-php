@@ -1,5 +1,5 @@
 <?php
-namespace Linkfloyd\Bundle\FrontendBundle\Entity;
+namespace Linkfloyd\Bundle\CoreBundle\Entity;
 
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
@@ -137,11 +137,11 @@ class LinkDetail
     /**
      * Set thumbnailMedia
      *
-     * @param \Linkfloyd\Bundle\FrontendBundle\Entity\Media $thumbnailMedia
+     * @param \Linkfloyd\Bundle\CoreBundle\Entity\Media $thumbnailMedia
      *
      * @return Link
      */
-    public function setThumbnailMedia(\Linkfloyd\Bundle\FrontendBundle\Entity\Media $thumbnailMedia = null)
+    public function setThumbnailMedia(\Linkfloyd\Bundle\CoreBundle\Entity\Media $thumbnailMedia = null)
     {
         $this->thumbnailMedia = $thumbnailMedia;
 
@@ -151,7 +151,7 @@ class LinkDetail
     /**
      * Get thumbnailMedia
      *
-     * @return \Linkfloyd\Bundle\FrontendBundle\Entity\Media
+     * @return \Linkfloyd\Bundle\CoreBundle\Entity\Media
      */
     public function getThumbnailMedia()
     {

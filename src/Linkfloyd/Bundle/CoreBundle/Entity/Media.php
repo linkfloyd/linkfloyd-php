@@ -1,5 +1,5 @@
 <?php
-namespace Linkfloyd\Bundle\FrontendBundle\Entity;
+namespace Linkfloyd\Bundle\CoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 

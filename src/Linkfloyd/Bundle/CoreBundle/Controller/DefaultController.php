@@ -1,6 +1,6 @@
 <?php
 
-namespace Linkfloyd\Bundle\FrontendBundle\Controller;
+namespace Linkfloyd\Bundle\CoreBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -8,6 +8,6 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('FrontendBundle:Default:index.html.twig');
+        return $this->render('CoreBundle:Default:index.html.twig');
     }
 }
