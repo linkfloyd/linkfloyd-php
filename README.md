@@ -34,6 +34,12 @@ Linkfloyd PHP
     php bin/console doctrine:fixtures:load
     
     
+### DB Pattern
+
+
+    http://www.dbpatterns.com/documents/581c95781514b404853d8c6c/
+    
+    
 ## Frontend JS-CSS Dependencis
 
 I'm currenty using Laravel's [Elixir](https://laravel.com/docs/5.3/elixir) for combine scripts and stylesheets.
