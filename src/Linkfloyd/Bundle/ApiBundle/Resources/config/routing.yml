@@ -1,0 +1,3 @@
+acme_api_demos:
+    type: rest
+    resource: Linkfloyd\Bundle\ApiBundle\Controller\DefaultController

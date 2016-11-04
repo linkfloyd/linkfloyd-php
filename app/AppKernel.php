@@ -18,12 +18,15 @@ class AppKernel extends Kernel
 
 
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
+            new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new FOS\RestBundle\FOSRestBundle(),
             //new FOS\CommentBundle\FOSCommentBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle($this),
             new Linkfloyd\Bundle\UserBundle\UserBundle(),
             new Linkfloyd\Bundle\CoreBundle\LinkfloydCoreBundle(),
+            new Linkfloyd\Bundle\ApiBundle\LinkfloydApiBundle(),
+            new FOS\OAuthServerBundle\FOSOAuthServerBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
