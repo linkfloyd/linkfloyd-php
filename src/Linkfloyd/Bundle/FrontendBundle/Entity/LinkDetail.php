@@ -6,7 +6,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 /**
- * @author Guven Atbakan <guven@atbakan.com>
  * @ORM\Entity
  * @ORM\Table(name="link_details", indexes={@ORM\Index(name="thumbnail_media_id_index", columns={"thumbnail_media_id"})})
  */
