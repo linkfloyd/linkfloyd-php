@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="post_detail", indexes={@ORM\Index(name="post_id", columns={"post_id"})})
+ * @ORM\Table(name="post_details", indexes={@ORM\Index(name="post_id", columns={"post_id"})})
  */
 class PostDetail
 {
