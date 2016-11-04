@@ -45,6 +45,11 @@ class Post
     private $linkDetail;
 
     /**
+     * @ORM\OneToOne(targetEntity="Linkfloyd\Bundle\CoreBundle\Entity\PostDetail", mappedBy="post")
+     */
+    private $detail;
+
+    /**
      * Get id
      *
      * @return integer
@@ -100,5 +105,29 @@ class Post
     public function getLinkDetail()
     {
         return $this->linkDetail;
+    }
+
+    /**
+     * Set detail
+     *
+     * @param \Linkfloyd\Bundle\CoreBundle\Entity\PostDetail $detail
+     *
+     * @return Post
+     */
+    public function setDetail(\Linkfloyd\Bundle\CoreBundle\Entity\PostDetail $detail = null)
+    {
+        $this->detail = $detail;
+
+        return $this;
+    }
+
+    /**
+     * Get detail
+     *
+     * @return \Linkfloyd\Bundle\CoreBundle\Entity\PostDetail
+     */
+    public function getDetail()
+    {
+        return $this->detail;
     }
 }
