@@ -21,7 +21,7 @@ class UserController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
         }
 
-        return $this->render('CoreBundle:User:login.html.twig', [
+        return $this->render('LinkfloydCoreBundle:User:login.html.twig', [
             'form' => $form->createView(),
         ]);
     }
@@ -29,14 +29,14 @@ class UserController extends Controller
     public function registerAction(Request $request)
     {
         $userService = $this->get('linkfloyd.user_bundle.user_manager');
-        return $this->render('CoreBundle:User:register.html.twig', array(
+        return $this->render('LinkfloydCoreBundle:User:register.html.twig', array(
             // ...
         ));
     }
 
     public function logoutAction()
     {
-        return $this->render('CoreBundle:User:logout.html.twig', array(
+        return $this->render('LinkfloydCoreBundle:User:logout.html.twig', array(
             // ...
         ));
     }

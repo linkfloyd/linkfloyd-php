@@ -8,6 +8,6 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('CoreBundle:Default:index.html.twig');
+        return $this->render('LinkfloydCoreBundle:Default:index.html.twig');
     }
 }

@@ -1,5 +1,5 @@
 frontend:
-    resource: "@FrontendBundle/Resources/config/routing.yml"
+    resource: "@LinkfloydCoreBundle/Resources/config/routing.yml"
     prefix:   /
 
 fos_user:
