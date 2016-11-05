@@ -29,6 +29,7 @@ class AuthCode extends BaseAuthCode
 
     /**
      * @ORM\ManyToOne(targetEntity="Linkfloyd\Bundle\UserBundle\Entity\User")
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     protected $user;
 }

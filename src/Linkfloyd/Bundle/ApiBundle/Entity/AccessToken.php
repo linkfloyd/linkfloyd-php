@@ -29,6 +29,7 @@ class AccessToken extends BaseAccessToken
 
     /**
      * @ORM\ManyToOne(targetEntity="Linkfloyd\Bundle\UserBundle\Entity\User")
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     protected $user;
 }
