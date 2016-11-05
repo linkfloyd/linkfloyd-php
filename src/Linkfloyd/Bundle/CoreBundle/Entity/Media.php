@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @author Guven Atbakan <guven@atbakan.com>
  * @ORM\Entity
- * @ORM\Table(name="medias")
+ * @ORM\Table(name="medias", indexes={@ORM\Index(name="media_url_index", columns={"url"})})
  */
 class Media
 {

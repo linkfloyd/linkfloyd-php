@@ -7,7 +7,7 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="link_details", indexes={@ORM\Index(name="thumbnail_media_id_index", columns={"thumbnail_media_id"})})
+ * @ORM\Table(name="link_details", indexes={@ORM\Index(name="thumbnail_media_id_index", columns={"thumbnail_media_id"}),@ORM\Index(name="link_details_url_index", columns={"url"})})
  */
 class LinkDetail
 {
