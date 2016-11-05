@@ -1,8 +1,16 @@
 services:
-    linkfloyd.frontend.service.link_service:
-        class: Linkfloyd\Bundle\CoreBundle\Service\LinkService
+    linkfloyd.frontend.service.link_detail_service:
+        class: Linkfloyd\Bundle\CoreBundle\Service\LinkDetailService
+        arguments: ["@doctrine.orm.entity_manager"]
+
+    linkfloyd.frontend.service.post__service:
+        class: Linkfloyd\Bundle\CoreBundle\Service\PostService
         arguments: ["@doctrine.orm.entity_manager"]
 
     linkfloyd.frontend.service.media_service:
         class: Linkfloyd\Bundle\CoreBundle\Service\MediaService
+        arguments: ["@doctrine.orm.entity_manager"]
+
+    linkfloyd.frontend.service.url_service:
+        class: Linkfloyd\Bundle\CoreBundle\Service\UrlService
         arguments: ["@doctrine.orm.entity_manager"]

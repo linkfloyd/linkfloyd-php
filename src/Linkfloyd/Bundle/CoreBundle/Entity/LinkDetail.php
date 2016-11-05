@@ -67,7 +67,7 @@ class LinkDetail
      *
      * @param string $url
      *
-     * @return Link
+     * @return LinkDetail
      */
     public function setUrl($url)
     {
@@ -91,7 +91,7 @@ class LinkDetail
      *
      * @param string $title
      *
-     * @return Link
+     * @return LinkDetail
      */
     public function setTitle($title)
     {
@@ -115,7 +115,7 @@ class LinkDetail
      *
      * @param string $description
      *
-     * @return Link
+     * @return LinkDetail
      */
     public function setDescription($description)
     {
@@ -139,7 +139,7 @@ class LinkDetail
      *
      * @param \Linkfloyd\Bundle\CoreBundle\Entity\Media $thumbnailMedia
      *
-     * @return Link
+     * @return LinkDetail
      */
     public function setThumbnailMedia(\Linkfloyd\Bundle\CoreBundle\Entity\Media $thumbnailMedia = null)
     {

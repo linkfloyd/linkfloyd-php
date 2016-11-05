@@ -5,6 +5,7 @@ linkfloyd_core:
 linkfloyd_api:
     resource: "@LinkfloydApiBundle/Controller"
     type: annotation
+    defaults: {_format: json}
     prefix:   /api
 
 fos_user:
