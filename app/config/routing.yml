@@ -3,7 +3,8 @@ linkfloyd_core:
     prefix:   /
 
 linkfloyd_api:
-    resource: "@LinkfloydApiBundle/Resources/config/routing.yml"
+    resource: "@LinkfloydApiBundle/Controller"
+    type: annotation
     prefix:   /api
 
 fos_user:
