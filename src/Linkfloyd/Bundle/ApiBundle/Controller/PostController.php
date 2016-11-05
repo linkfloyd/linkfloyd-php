@@ -74,8 +74,29 @@ class PostController extends ApiController
      */
     public function postPostAction(Request $request)
     {
-        $data = $this->getUser();
-        $view = $this->view($data);
+        $url = $request->request->get('url');
+        $title = $request->request->get('title');
+        $description = $request->request->get('description');
+
+
+
+        $urlService = $this->get('linkfloyd.frontend.service.url_service');
+        $mediaService = $this->get('linkfloyd.frontend.service.media_service');
+        $linkDetailService = $this->get('linkfloyd.frontend.service.link_detail_service');
+        $postService = $this->get('linkfloyd.frontend.service.post__service');
+
+        $urlDetails = $urlService->getUrlDetails($url);
+        if (!$urlDetails) {
+            //throw 400;
+        }
+        $createPostService = $this->get('linkfloyd.frontend.service.post.create_post_service');
+        $post = $createPostService->insertPost($urlDetails, $this->getUser(), $title, $description);
+
+
+
+        $view = $this->view([
+            'data' => $post,
+        ], 201);
         return $this->handleView($view);
     }
 }

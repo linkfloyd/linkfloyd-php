@@ -10,6 +10,7 @@ use Linkfloyd\Bundle\CoreBundle\Entity\LinkDetail;
 use Linkfloyd\Bundle\CoreBundle\Entity\Post;
 use Linkfloyd\Bundle\CoreBundle\Entity\PostDetail;
 use Linkfloyd\Bundle\UserBundle\Entity\User;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class PostService
 {
@@ -24,13 +25,13 @@ class PostService
     }
 
     /**
-     * @param User $user
+     * @param UserInterface $user
      * @param LinkDetail $linkDetail
      * @param string $title
      * @param string|null $description
      * @return Post
      */
-    public function insertPost(User $user, LinkDetail $linkDetail, string $title, $description) : Post
+    public function insertPost(UserInterface $user, LinkDetail $linkDetail, string $title, $description) : Post
     {
         $post = new Post();
         $post->setUser($user)

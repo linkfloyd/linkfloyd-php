@@ -13,4 +13,15 @@ services:
 
     linkfloyd.frontend.service.url_service:
         class: Linkfloyd\Bundle\CoreBundle\Service\UrlService
-        arguments: ["@doctrine.orm.entity_manager"]
+        arguments: ["@guzzle.client", "%shibby.iframely.apikey%"]
+
+    linkfloyd.frontend.service.post.create_post_service:
+        class: Linkfloyd\Bundle\CoreBundle\Service\Post\CreatePostService
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - "@linkfloyd.frontend.service.media_service"
+            - "@linkfloyd.frontend.service.link_detail_service"
+            - "@linkfloyd.frontend.service.post__service"
+
+    guzzle.client:
+        class: GuzzleHttp\Client

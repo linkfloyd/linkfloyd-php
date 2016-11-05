@@ -2,6 +2,7 @@
 
 namespace Linkfloyd\Bundle\CoreBundle\Service;
 
+use Doctrine\ORM\EntityManagerInterface;
 use Linkfloyd\Bundle\CoreBundle\Entity\Media;
 
 /**
@@ -20,20 +21,54 @@ class MediaService
         $this->entityManager = $entityManager;
     }
 
+    public function getOrCreateMedia(string $url) : Media
+    {
+        $media = $this->getMediaByUrl($url);
+        if (!$media) {
+            $media = $this->createMedia($url);
+        }
+        return $media;
+    }
+
     /**
-     * TODO:
+     * Created media object and persists to database.
+     *
+     * @param string $url
+     * @return Media
+     */
+    public function createMedia(string $url) : Media
+    {
+        $media = new Media();
+        $media->setUrl($url);
+
+        $this->entityManager->persist($media);
+
+        return $media;
+    }
+    /**
+     * Creates and inserts media object to database with COMMIT
      *
      * @param string $url
      * @return Media
      */
     public function insertMedia(string $url) : Media
     {
-        $media = new Media();
-        $media->setUrl($url);
+        $media = $this->createMedia($url);
 
-        $this->entityManager->persist($url);
         $this->entityManager->flush();
 
         return $media;
+    }
+
+    /**
+     * Returns if a url inserted to Media entity.
+     * 
+     * @param string $url
+     * @return Media|null
+     */
+    public function getMediaByUrl(string $url)
+    {
+        return $this->entityManager->getRepository('LinkfloydCoreBundle:Media')
+            ->findOneBy(['url'=>$url]);
     }
 }
