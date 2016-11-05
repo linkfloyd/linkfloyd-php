@@ -95,6 +95,6 @@ fos_oauth_server:
     auth_code_class:     Linkfloyd\Bundle\ApiBundle\Entity\AuthCode
     service:
         #user_provider: fos_user.user_manager             # This property will be used when valid credentials are given to load the user upon access token creation
-        user_provider: fos_user.user_provider.username             # This property will be used when valid credentials are given to load the user upon access token creation
+        user_provider: fos_user.user_provider.username_email             # This property will be used when valid credentials are given to load the user upon access token creation
 
 nelmio_api_doc: ~
