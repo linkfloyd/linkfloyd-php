@@ -29,9 +29,11 @@
                 <li>
                     <a href="#">Services</a>
                 </li>
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                 <li>
-                    <a href="#">Contact</a>
+                    <a href="{{  url('core_bundle_post_insert') }}">{{ 'nav.insert_post' | trans }}</a>
                 </li>
+                {% endif %}
             </ul>
 
             <ul class="nav navbar-nav navbar-right">

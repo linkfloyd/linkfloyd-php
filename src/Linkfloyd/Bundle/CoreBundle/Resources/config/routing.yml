@@ -1,3 +1,11 @@
 homepage:
     path:     /
     defaults: { _controller: LinkfloydCoreBundle:Default:index }
+
+core_bundle_post_index:
+    path:     /posts
+    defaults: { _controller: LinkfloydCoreBundle:Post:index }
+
+core_bundle_post_insert:
+    path:     /posts/insert
+    defaults: { _controller: LinkfloydCoreBundle:Post:insertPost }

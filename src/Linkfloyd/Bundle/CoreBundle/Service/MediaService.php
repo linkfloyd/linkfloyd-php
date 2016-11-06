@@ -21,8 +21,15 @@ class MediaService
         $this->entityManager = $entityManager;
     }
 
-    public function getOrCreateMedia(string $url) : Media
+    /**
+     * @param $url
+     * @return Media|null
+     */
+    public function getOrCreateMedia($url)
     {
+        if (!$url) {
+            return;
+        }
         $media = $this->getMediaByUrl($url);
         if (!$media) {
             $media = $this->createMedia($url);

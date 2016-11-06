@@ -2,3 +2,11 @@ nav:
   login: Giris
   register: Kaydol
   logout: Cikis Yap
+  insert_post: Link Gönder
+
+form:
+  insert_post:
+    labels:
+      url: URL
+      title: İçerik title
+      description: İçerik description

@@ -44,8 +44,8 @@ class CreatePostService
 
     public function insertPost(array $urlDetails, UserInterface $user, $title, $description)
     {
-        $media = $this->mediaService->getOrCreateMedia($urlDetails['thumbnail_url']);
-        $linkDetail = $this->linkDetailService->getOrCreateLinkDetail($urlDetails['url'], $urlDetails['title'], $urlDetails['description'], $media);
+        $media = $this->mediaService->getOrCreateMedia(@$urlDetails['thumbnail_url']);
+        $linkDetail = $this->linkDetailService->getOrCreateLinkDetail($urlDetails['url'], @$urlDetails['title'], @$urlDetails['description'], $media);
         $post = $this->postService->insertPost($user, $linkDetail, $title, $description);
 
         return $post;
