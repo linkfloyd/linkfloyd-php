@@ -10,6 +10,8 @@ use Linkfloyd\Bundle\CoreBundle\Entity\LinkDetail;
 use Linkfloyd\Bundle\CoreBundle\Entity\Post;
 use Linkfloyd\Bundle\CoreBundle\Entity\PostDetail;
 use Linkfloyd\Bundle\UserBundle\Entity\User;
+use Pagerfanta\Adapter\DoctrineORMAdapter;
+use Pagerfanta\Pagerfanta;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 class PostService
@@ -18,10 +20,37 @@ class PostService
      * @var EntityManagerInterface
      */
     private $entityManager;
+    /**
+     * @var Pagerfanta
+     */
+    private $pagerfanta;
+    /**
+     * @var DoctrineORMAdapter
+     */
+    private $pagerfantaAdapter;
 
     public function __construct(EntityManagerInterface $entityManager)
     {
         $this->entityManager = $entityManager;
+    }
+
+    /**
+     * @param $page
+     * @param $limit //TODO: from parameters
+     * @return Pagerfanta
+     */
+    public function getPosts($page, $limit)
+    {
+        $posts = $this->entityManager->getRepository('LinkfloydCoreBundle:Post')
+            ->findPosts();
+        $adapter = new DoctrineORMAdapter($posts);
+        $pagerfanta = new Pagerfanta($adapter);
+
+        /** TODO: add setCurrentPage method to try block */
+        $pagerfanta->setCurrentPage($page)
+            ->setMaxPerPage($limit);
+
+        return $pagerfanta;
     }
 
     /**

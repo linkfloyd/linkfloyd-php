@@ -36,7 +36,8 @@
         "doctrine/doctrine-migrations-bundle": "^1.0",
         "gedmo/doctrine-extensions": "^2.4",
         "nelmio/api-doc-bundle": "^2.13",
-        "guzzlehttp/guzzle": "^6.2"
+        "guzzlehttp/guzzle": "^6.2",
+        "white-october/pagerfanta-bundle": "^1.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

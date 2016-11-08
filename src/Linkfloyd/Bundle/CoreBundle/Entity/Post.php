@@ -11,7 +11,7 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Linkfloyd\Bundle\UserBundle\Entity\User;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Linkfloyd\Bundle\CoreBundle\Repository\PostRepository")
  * @ORM\Table(name="posts", indexes={@ORM\Index(name="link_detail_id_index", columns={"link_detail_id"}),@ORM\Index(name="user_id_index", columns={"user_id"})})
  */
 class Post
