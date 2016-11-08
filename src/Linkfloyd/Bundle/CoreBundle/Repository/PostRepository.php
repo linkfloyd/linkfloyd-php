@@ -13,6 +13,7 @@ class PostRepository extends EntityRepository
     {
         return $this->createQueryBuilder('post')
             ->select('post')
+            ->orderBy('post.id', 'DESC')
             ->getQuery();
     }
 }

@@ -7,6 +7,7 @@ namespace Linkfloyd\Bundle\ApiBundle\Controller;
 
 use Doctrine\Common\Annotations\Annotation\Required;
 use FOS\RestBundle\Controller\Annotations\Prefix;
+use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Controller\Annotations\RequestParam;
 use FOS\RestBundle\Controller\Annotations\View;
 use FOS\RestBundle\Request\ParamFetcher;
@@ -29,17 +30,35 @@ class PostController extends ApiController
      * @ApiDoc(
      *     section="Post",
      *     description="Lists posts with pagination",
-     *     filters={
-     *          {"name"="a-filter", "dataType"="integer"},
-     *     }
      * )
-     * @View()
+     * @QueryParam(
+     *     name="page",
+     *     nullable=true,
+     *     default="1",
+     *     requirements=@Assert\GreaterThan(1)
+     * )
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function getPostsAction()
+    public function getPostsAction(Request $request)
     {
-        $data = array("hello" => "world");
-        $view = $this->view($data);
+        $page = $request->query->getInt('page', 1);
+
+        $postService = $this->get('linkfloyd.frontend.service.post_service');
+        $posts = $postService->getPosts($page, $limit = 10);
+
+        $data = [];
+        foreach ($posts->getCurrentPageResults() as $post) {
+            $data[] = $post;
+        }
+
+        $view = $this->view([
+            'meta' => [
+                'current_page' => $posts->getCurrentPage(),
+                'last_page' => $posts->getNbPages(),
+                'total_record' => $posts->count(),
+            ],
+            'data' => $data,
+        ]);
 
         return $this->handleView($view);
     }
@@ -78,21 +97,13 @@ class PostController extends ApiController
         $title = $request->request->get('title');
         $description = $request->request->get('description');
 
-
-
         $urlService = $this->get('linkfloyd.frontend.service.url_service');
-        $mediaService = $this->get('linkfloyd.frontend.service.media_service');
-        $linkDetailService = $this->get('linkfloyd.frontend.service.link_detail_service');
-        $postService = $this->get('linkfloyd.frontend.service.post__service');
-
         $urlDetails = $urlService->getUrlDetails($url);
         if (!$urlDetails) {
             //throw 400;
         }
         $createPostService = $this->get('linkfloyd.frontend.service.post.create_post_service');
         $post = $createPostService->insertPost($urlDetails, $this->getUser(), $title, $description);
-
-
 
         $view = $this->view([
             'data' => $post,
