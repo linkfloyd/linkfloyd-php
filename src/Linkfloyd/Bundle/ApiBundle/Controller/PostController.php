@@ -2,15 +2,12 @@
 /**
  * @author Guven Atbakan <guven@atbakan.com>
  */
-
 namespace Linkfloyd\Bundle\ApiBundle\Controller;
 
 use Doctrine\Common\Annotations\Annotation\Required;
-use FOS\RestBundle\Controller\Annotations\Prefix;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Controller\Annotations\RequestParam;
 use FOS\RestBundle\Controller\Annotations\View;
-use FOS\RestBundle\Request\ParamFetcher;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -19,8 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Class PostController
- * @package Linkfloyd\Bundle\ApiBundle\Controller
+ * Class PostController.
  */
 class PostController extends ApiController
 {
@@ -37,6 +33,7 @@ class PostController extends ApiController
      *     default="1",
      *     requirements=@Assert\GreaterThan(1)
      * )
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function getPostsAction(Request $request)
@@ -44,7 +41,7 @@ class PostController extends ApiController
         $page = $request->query->getInt('page', 1);
 
         $postService = $this->get('linkfloyd.frontend.service.post_service');
-        $posts = $postService->getPosts($page, $limit = 10);
+        $posts = $postService->getPosts($page, $this->getParameter('api_listing_post_limit'));
 
         $data = [];
         foreach ($posts->getCurrentPageResults() as $post) {
@@ -88,7 +85,9 @@ class PostController extends ApiController
      *     nullable=true,
      *     description="",
      * )
+     *
      * @param Request $request
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function postPostAction(Request $request)
@@ -108,6 +107,7 @@ class PostController extends ApiController
         $view = $this->view([
             'data' => $post,
         ], 201);
+
         return $this->handleView($view);
     }
 }

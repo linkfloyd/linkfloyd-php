@@ -11,7 +11,11 @@ class DefaultController extends Controller
     {
         $page = $request->query->getInt('page', 1);
         $postService = $this->get('linkfloyd.frontend.service.post_service');
-        dump($postService->getPosts($page, $limit = 10));
-        return $this->render('LinkfloydCoreBundle:Default:index.html.twig');
+
+        $posts = $postService->getPosts($page, $this->getParameter('homepage_listing_post_limit'));
+
+        return $this->render('LinkfloydCoreBundle:Default:index.html.twig', [
+            'posts' => $posts,
+        ]);
     }
 }

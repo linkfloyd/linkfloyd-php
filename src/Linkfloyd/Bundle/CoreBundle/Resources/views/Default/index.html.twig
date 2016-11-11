@@ -1,5 +1,15 @@
 {% extends "LinkfloydCoreBundle::layout.html.twig" %}
 
 {% block main %}
-    Hello Linkfloyd Ahalisi
+    {% for post in posts %}
+        {{ post.detail.title }}<br/>
+        {{ post.detail.description }}<br/>
+        URL: {{ post.linkDetail.url}}<br/>
+        URL Original Title: {{ post.linkDetail.title}}<br/>
+        URL Original Description: {{ post.linkDetail.description}}
+        <hr>
+    {% endfor %}
+    <div class="pagerfanta">
+        {{ pagerfanta(posts, 'twitter_bootstrap3') }}
+    </div>
 {% endblock main %}

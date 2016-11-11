@@ -10,6 +10,8 @@ imports:
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: tr
+    homepage_listing_post_limit: 10
+    api_listing_post_limit: 10
 
 framework:
     #esi:             ~

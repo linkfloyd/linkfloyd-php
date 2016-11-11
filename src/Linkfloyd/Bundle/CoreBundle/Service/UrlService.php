@@ -36,7 +36,9 @@ class UrlService
         $oembed = $this->getOembed($url);
 
         if (!$oembed) {
-            return;
+            return [
+                'url' => $url,
+            ];
         }
 
         return [

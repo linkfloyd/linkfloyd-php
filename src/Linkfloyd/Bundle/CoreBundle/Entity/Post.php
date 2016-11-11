@@ -2,10 +2,8 @@
 /**
  * @author Guven Atbakan <guven@atbakan.com>
  */
-
 namespace Linkfloyd\Bundle\CoreBundle\Entity;
 
-use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Linkfloyd\Bundle\UserBundle\Entity\User;
@@ -16,7 +14,7 @@ use Linkfloyd\Bundle\UserBundle\Entity\User;
  */
 class Post
 {
-    /**
+    /*
      * adds created_at, updated_at columns
      */
     use TimestampableEntity;
@@ -50,9 +48,9 @@ class Post
     private $detail;
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -60,7 +58,7 @@ class Post
     }
 
     /**
-     * Set user
+     * Set user.
      *
      * @param \Linkfloyd\Bundle\UserBundle\Entity\User $user
      *
@@ -74,7 +72,7 @@ class Post
     }
 
     /**
-     * Get user
+     * Get user.
      *
      * @return \Linkfloyd\Bundle\UserBundle\Entity\User
      */
@@ -84,7 +82,7 @@ class Post
     }
 
     /**
-     * Set linkDetail
+     * Set linkDetail.
      *
      * @param \Linkfloyd\Bundle\CoreBundle\Entity\LinkDetail $linkDetail
      *
@@ -98,7 +96,7 @@ class Post
     }
 
     /**
-     * Get linkDetail
+     * Get linkDetail.
      *
      * @return \Linkfloyd\Bundle\CoreBundle\Entity\LinkDetail
      */
@@ -108,7 +106,7 @@ class Post
     }
 
     /**
-     * Set detail
+     * Set detail.
      *
      * @param \Linkfloyd\Bundle\CoreBundle\Entity\PostDetail $detail
      *
@@ -122,7 +120,7 @@ class Post
     }
 
     /**
-     * Get detail
+     * Get detail.
      *
      * @return \Linkfloyd\Bundle\CoreBundle\Entity\PostDetail
      */

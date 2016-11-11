@@ -10,3 +10,7 @@ form:
       url: URL
       title: İçerik title
       description: İçerik description
+
+post:
+  message:
+    success: Linki siteye ekledik.

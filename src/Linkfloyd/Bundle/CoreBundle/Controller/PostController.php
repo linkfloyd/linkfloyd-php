@@ -32,8 +32,13 @@ class PostController extends Controller
             $post = $postService->insertPost(
                 $urlDetails?$urlDetails:['url'=>$url], $this->getUser(), $title, $description
             );
+            if ($post) {
+                $this->addFlash('success', $this->get('translator')->trans('post.message.success'));
+                return $this->redirectToRoute('homepage', [
+                    'post_id'=>$post->getId(),
+                ]);
+            }
         }
-
 
         return $this->render('LinkfloydCoreBundle:Post:insert_post.html.twig', array(
             'form' => $form->createView(),

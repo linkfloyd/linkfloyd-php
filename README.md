@@ -59,3 +59,6 @@ To compile scripts, simple run these commands:
     
     gulp watch #watches your js/css file changes as sync
 
+## Code-Style
+
+We are following smyfony code style guide. You can use php-cs-fixer --level=symfony by default

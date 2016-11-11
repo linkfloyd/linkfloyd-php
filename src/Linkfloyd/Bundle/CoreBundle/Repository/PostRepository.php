@@ -12,7 +12,10 @@ class PostRepository extends EntityRepository
     public function findPosts()
     {
         return $this->createQueryBuilder('post')
-            ->select('post')
+            ->select('post', 'linkDetail', 'user', 'detail')
+            ->join('post.linkDetail', 'linkDetail')
+            ->join('post.user', 'user')
+            ->join('post.detail', 'detail')
             ->orderBy('post.id', 'DESC')
             ->getQuery();
     }

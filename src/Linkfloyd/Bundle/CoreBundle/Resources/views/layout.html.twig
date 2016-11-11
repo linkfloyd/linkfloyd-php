@@ -23,12 +23,6 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li>
-                    <a href="#">About</a>
-                </li>
-                <li>
-                    <a href="#">Services</a>
-                </li>
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                 <li>
                     <a href="{{  url('core_bundle_post_insert') }}">{{ 'nav.insert_post' | trans }}</a>
@@ -61,7 +55,7 @@
     {% if app.request.hasPreviousSession %}
         {% for type, messages in app.session.flashbag.all() %}
             {% for message in messages %}
-                <div class="flash-{{ type }}">
+                <div class="alert alert-{{ type }}">
                     {{ message }}
                 </div>
             {% endfor %}
