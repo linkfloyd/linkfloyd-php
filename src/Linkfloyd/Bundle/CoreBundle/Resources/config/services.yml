@@ -5,7 +5,7 @@ services:
 
     linkfloyd.frontend.service.post_service:
         class: Linkfloyd\Bundle\CoreBundle\Service\PostService
-        arguments: ["@doctrine.orm.entity_manager"]
+        arguments: ["@doctrine.orm.entity_manager","@event_dispatcher"]
 
     linkfloyd.frontend.service.media_service:
         class: Linkfloyd\Bundle\CoreBundle\Service\MediaService

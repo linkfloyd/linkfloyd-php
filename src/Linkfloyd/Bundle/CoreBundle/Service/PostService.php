@@ -2,16 +2,16 @@
 /**
  * @author Guven Atbakan <guven@atbakan.com>
  */
-
 namespace Linkfloyd\Bundle\CoreBundle\Service;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Linkfloyd\Bundle\CoreBundle\Entity\LinkDetail;
 use Linkfloyd\Bundle\CoreBundle\Entity\Post;
 use Linkfloyd\Bundle\CoreBundle\Entity\PostDetail;
-use Linkfloyd\Bundle\UserBundle\Entity\User;
+use Linkfloyd\Bundle\CoreBundle\Event\PostCreatedEvent;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Pagerfanta;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 class PostService
@@ -21,22 +21,26 @@ class PostService
      */
     private $entityManager;
     /**
-     * @var Pagerfanta
+     * @var EventDispatcherInterface
      */
-    private $pagerfanta;
-    /**
-     * @var DoctrineORMAdapter
-     */
-    private $pagerfantaAdapter;
+    private $eventDispatcher;
 
-    public function __construct(EntityManagerInterface $entityManager)
+    /**
+     * PostService constructor.
+     *
+     * @param EntityManagerInterface   $entityManager
+     * @param EventDispatcherInterface $eventDispatcher
+     */
+    public function __construct(EntityManagerInterface $entityManager, EventDispatcherInterface $eventDispatcher)
     {
         $this->entityManager = $entityManager;
+        $this->eventDispatcher = $eventDispatcher;
     }
 
     /**
      * @param $page
      * @param $limit //TODO: from parameters
+     *
      * @return Pagerfanta
      */
     public function getPosts($page, $limit)
@@ -46,7 +50,7 @@ class PostService
         $adapter = new DoctrineORMAdapter($posts);
         $pagerfanta = new Pagerfanta($adapter);
 
-        /** TODO: add setCurrentPage method to try block */
+        /* TODO: add setCurrentPage method to try block */
         $pagerfanta->setCurrentPage($page)
             ->setMaxPerPage($limit);
 
@@ -55,9 +59,10 @@ class PostService
 
     /**
      * @param UserInterface $user
-     * @param LinkDetail $linkDetail
-     * @param string $title
-     * @param string|null $description
+     * @param LinkDetail    $linkDetail
+     * @param string        $title
+     * @param string|null   $description
+     *
      * @return Post
      */
     public function insertPost(UserInterface $user, LinkDetail $linkDetail, string $title, $description) : Post
@@ -75,6 +80,11 @@ class PostService
 
         $this->entityManager->persist($postDetail);
         $this->entityManager->flush();
+
+        $this->eventDispatcher->dispatch(
+            PostCreatedEvent::EVENT_NAME,
+            new PostCreatedEvent($post)
+        );
 
         return $post;
     }

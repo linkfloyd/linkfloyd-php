@@ -2,7 +2,6 @@
 /**
  * @author Guven Atbakan <guven@atbakan.com>
  */
-
 namespace Linkfloyd\Bundle\CoreBundle\Service;
 
 use GuzzleHttp\Client;
@@ -12,7 +11,6 @@ use GuzzleHttp\Client;
  * Örneğin, verilen URL için title, description, thumbnail gibi detayların alınması.
  *
  * Class UrlService
- * @package Linkfloyd\Bundle\CoreBundle\Service
  */
 class UrlService
 {
@@ -53,6 +51,7 @@ class UrlService
     {
         try {
             $url = "http://open.iframe.ly/api/oembed?url=$url&api_key={$this->iframelyApiKey}";
+
             $response = $this->client->get($url);
 
             if (200 == $response->getStatusCode()) {
@@ -60,6 +59,7 @@ class UrlService
             }
         } catch (\Exception $e) {
         }
+
         return;
     }
 }
