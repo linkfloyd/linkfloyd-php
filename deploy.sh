@@ -11,8 +11,9 @@ composer selfupdate
 git pull origin develop
 composer install --prefer-dist --no-dev --no-interaction --optimize-autoloader -v
 php bin/console cache:clear --env=prod --no-debug -v
-php bin/console assetic:dump --env=prod --no-debug -v
+
 php bin/console cache:warmup --env=prod --no-debug -v
+
 php bin/console doctrine:migrations:migrate --no-interaction
 
 /etc/init.d/php7.0-fpm reload
