@@ -7,7 +7,6 @@ namespace Linkfloyd\Bundle\CoreBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 
@@ -19,12 +18,9 @@ class InsertPostForm extends AbstractType
             ->add('url', UrlType::class, [
                 'label_format' => 'form.insert_post.labels.url',
             ])
-            ->add('title', TextType::class, [
+            ->add('title', TextareaType::class, [
                 'label_format' => 'form.insert_post.labels.title',
-            ])
-            ->add('description', TextareaType::class, [
-                'label_format' => 'form.insert_post.labels.description',
-                'required' => false,
+                'attr' => ['rows' => 3],
             ])
             ->add('submit', SubmitType::class)
         ;

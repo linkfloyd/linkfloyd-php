@@ -2,10 +2,8 @@
 /**
  * @author Guven Atbakan <guven@atbakan.com>
  */
-
 namespace Linkfloyd\Bundle\CoreBundle\Entity;
 
-use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -14,7 +12,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class PostDetail
 {
-
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -33,7 +30,7 @@ class PostDetail
     /**
      * @var string
      *
-     * @ORM\Column(name="title", type="string", length=140, nullable=true)
+     * @ORM\Column(name="title", type="string", length=350, nullable=true)
      */
     private $title;
 
@@ -45,9 +42,9 @@ class PostDetail
     private $description;
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -55,7 +52,7 @@ class PostDetail
     }
 
     /**
-     * Set title
+     * Set title.
      *
      * @param string $title
      *
@@ -69,7 +66,7 @@ class PostDetail
     }
 
     /**
-     * Get title
+     * Get title.
      *
      * @return string
      */
@@ -79,7 +76,7 @@ class PostDetail
     }
 
     /**
-     * Set description
+     * Set description.
      *
      * @param string $description
      *
@@ -93,7 +90,7 @@ class PostDetail
     }
 
     /**
-     * Get description
+     * Get description.
      *
      * @return string
      */
@@ -103,7 +100,7 @@ class PostDetail
     }
 
     /**
-     * Set post
+     * Set post.
      *
      * @param \Linkfloyd\Bundle\CoreBundle\Entity\Post $post
      *
@@ -117,7 +114,7 @@ class PostDetail
     }
 
     /**
-     * Get post
+     * Get post.
      *
      * @return \Linkfloyd\Bundle\CoreBundle\Entity\Post
      */

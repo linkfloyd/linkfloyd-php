@@ -20,22 +20,22 @@ class PostController extends Controller
         $form = $this->createForm(InsertPostForm::class);
         $form->handleRequest($request);
 
-
         if ($form->isSubmitted() && $form->isValid()) {
             $url = ($form->get('url')->getData());
             $title = $form->get('title')->getData();
-            $description = $form->get('description')->getData();
+            //$description = $form->get('description')->getData();
 
             $urlService = $this->get('linkfloyd.frontend.service.url_service');
             $postService = $this->get('linkfloyd.frontend.service.post.create_post_service');
             $urlDetails = $urlService->getUrlDetails($url);
             $post = $postService->insertPost(
-                $urlDetails?$urlDetails:['url'=>$url], $this->getUser(), $title, $description
+                $urlDetails ? $urlDetails : ['url' => $url], $this->getUser(), $title, $description = null
             );
             if ($post) {
                 $this->addFlash('success', $this->get('translator')->trans('post.message.success'));
+
                 return $this->redirectToRoute('homepage', [
-                    'post_id'=>$post->getId(),
+                    'post_id' => $post->getId(),
                 ]);
             }
         }
