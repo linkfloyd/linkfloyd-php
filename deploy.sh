@@ -19,4 +19,6 @@ php bin/console doctrine:migrations:migrate --no-interaction
 /etc/init.d/php7.0-fpm reload
 /etc/init.d/nginx reload
 
+chown -R www-data.www-data .
+
 print_info "Done!"
