@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-function print_info () { echo -e "\033[0;34m *  $1 \033[0m"; }
+#function print_info () { echo -e "\033[0;34m *  $1 \033[0m"; }
 
 set -e
 
@@ -21,4 +21,4 @@ php bin/console doctrine:migrations:migrate --no-interaction
 
 chown -R www-data.www-data .
 
-print_info "Done!"
+#print_info "Done!"
