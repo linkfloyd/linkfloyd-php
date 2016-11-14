@@ -2,11 +2,9 @@
 /**
  * @author Guven Atbakan <guven@atbakan.com>
  */
-
 namespace Linkfloyd\Bundle\CoreBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -26,6 +24,7 @@ class InsertPostForm extends AbstractType
             ])
             ->add('description', TextareaType::class, [
                 'label_format' => 'form.insert_post.labels.description',
+                'required' => false,
             ])
             ->add('submit', SubmitType::class)
         ;
