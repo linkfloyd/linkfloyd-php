@@ -20,7 +20,7 @@ class InsertPostForm extends AbstractType
             ])
             ->add('title', TextareaType::class, [
                 'label_format' => 'form.insert_post.labels.title',
-                'attr' => ['rows' => 3],
+                'attr' => ['rows' => 3, 'maxlength' => 350],
             ])
             ->add('submit', SubmitType::class)
         ;
