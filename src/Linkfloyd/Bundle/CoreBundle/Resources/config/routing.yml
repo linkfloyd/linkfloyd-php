@@ -9,3 +9,7 @@ core_bundle_post_index:
 core_bundle_post_insert:
     path:     /posts/insert
     defaults: { _controller: LinkfloydCoreBundle:Post:insertPost }
+
+core_bundle_post_delete:
+    path:     /posts/{id}/delete
+    defaults: { _controller: LinkfloydCoreBundle:Post:deletePost }

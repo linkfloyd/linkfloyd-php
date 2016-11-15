@@ -4,20 +4,23 @@
  */
 namespace Linkfloyd\Bundle\CoreBundle\Entity;
 
+use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Linkfloyd\Bundle\UserBundle\Entity\User;
 
 /**
  * @ORM\Entity(repositoryClass="Linkfloyd\Bundle\CoreBundle\Repository\PostRepository")
  * @ORM\Table(name="posts", indexes={@ORM\Index(name="link_detail_id_index", columns={"link_detail_id"}),@ORM\Index(name="user_id_index", columns={"user_id"})})
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  */
 class Post
 {
     /*
-     * adds created_at, updated_at columns
+     * adds created_at, updated_at, deleted_at columns
      */
-    use TimestampableEntity;
+    use SoftDeleteableEntity, TimestampableEntity;
 
     /**
      * @ORM\Id
@@ -127,5 +130,10 @@ class Post
     public function getDetail()
     {
         return $this->detail;
+    }
+
+    public function isAuthor(User $user = null)
+    {
+        return $user && $user->getId() === $this->getUser()->getId();
     }
 }

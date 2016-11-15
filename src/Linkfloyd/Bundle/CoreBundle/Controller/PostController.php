@@ -44,4 +44,25 @@ class PostController extends Controller
             'form' => $form->createView(),
         ));
     }
+
+    public function deletePostAction($id)
+    {
+        $postService = $this->get('linkfloyd.frontend.service.post_service');
+        $post = $postService->getPost($id);
+        if (!$post) {
+            $this->addFlash('error', $this->get('translator')->trans('post.not_found'));
+
+            return $this->redirectToRoute('homepage'); //todo
+        }
+
+        if (!$post->isAuthor($this->getUser())) {
+            $this->denyAccessUnlessGranted('delete', $post);
+        }
+
+        $postService->deletePost($post);
+
+        $this->addFlash('info', $this->get('translator')->trans('post.message.delete'));
+
+        return $this->redirectToRoute('homepage'); //todo
+    }
 }

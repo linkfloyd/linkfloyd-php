@@ -12,5 +12,7 @@ form:
       description: İçerik description
 
 post:
+  not_found: Paylaşım bulunamadı.
   message:
     success: Linki siteye ekledik.
+    delete: O iş tamam.

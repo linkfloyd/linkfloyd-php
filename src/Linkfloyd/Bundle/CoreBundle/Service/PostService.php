@@ -37,6 +37,12 @@ class PostService
         $this->eventDispatcher = $eventDispatcher;
     }
 
+    public function getPost(int $id)
+    {
+        return $this->entityManager->getRepository('LinkfloydCoreBundle:Post')
+            ->find($id);
+    }
+
     /**
      * @param $page
      * @param $limit //TODO: from parameters
@@ -87,5 +93,11 @@ class PostService
         );
 
         return $post;
+    }
+
+    public function deletePost(Post $post)
+    {
+        $this->entityManager->remove($post);
+        $this->entityManager->flush();
     }
 }

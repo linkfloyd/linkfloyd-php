@@ -14,6 +14,12 @@
                     ({{ post.linkDetail.title }})
                 {% endif %}
             </small>
+            {% if post.isAuthor(app.user) %}
+                <br/>
+                <small>
+                    <a href="{{ url('core_bundle_post_delete',{id:post.id}) }}" onclick="return confirm('Eminsen siliyorum')">Sil</a>
+                </small>
+            {% endif %}
         </p>
     </div>
 </div>
