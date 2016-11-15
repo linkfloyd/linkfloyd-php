@@ -19,3 +19,4 @@ parameters:
     secret:            ThisTokenIsNotSoSecretChangeIt
 
     shibby.iframely.apikey: put-your-api-key-here
+    google_analytics_identity:
