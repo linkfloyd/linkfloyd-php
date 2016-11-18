@@ -11,6 +11,7 @@ class PostControllerTest extends WebTestCase
         $client = static::createClient();
 
         $crawler = $client->request('GET', '/posts');
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
 
     public function testInsertpost()
@@ -18,6 +19,6 @@ class PostControllerTest extends WebTestCase
         $client = static::createClient();
 
         $crawler = $client->request('GET', '/posts/insert');
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
-
 }
