@@ -10,6 +10,11 @@ form:
       url: URL
       title: Title
       description: İçerik description
+    validation:
+      url_not_blank: URL alanı boş bırakılamaz
+      url_valid_url: URL geçerli değil.
+      title_not_blank: Bişeyler yazmak zorundasınız.
+      title_too_long: Yazdığınız şeyler çok fazla. 350 karakteri geçmesin. Eğer isterseniz yorumlardan devam edin.
 
 post:
   not_found: Paylaşım bulunamadı.
