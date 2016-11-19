@@ -8,6 +8,7 @@ use Doctrine\Common\Annotations\Annotation\Required;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Controller\Annotations\RequestParam;
 use FOS\RestBundle\Controller\Annotations\View;
+use Linkfloyd\Bundle\CoreBundle\Form\InsertPostForm;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -80,21 +81,22 @@ class PostController extends ApiController
      *     description="**not original url title**. custom title from user",
      *     requirements={@Required(),@Assert\NotBlank()}
      *     )
-     * @RequestParam(
-     *     name="description",
-     *     nullable=true,
-     *     description="",
-     * )
      *
      * @param Request $request
      *
      * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @throws \Exception
      */
     public function postPostAction(Request $request)
     {
+        /*$form = $this->createForm(InsertPostForm::class);
+        $form->handleRequest($request);
+        if (!$form->isValid()) {
+            throw new \Exception('throw 400 error here');
+        }*/
         $url = $request->request->get('url');
         $title = $request->request->get('title');
-        $description = $request->request->get('description');
 
         $urlService = $this->get('linkfloyd.frontend.service.url_service');
         $urlDetails = $urlService->getUrlDetails($url);
@@ -102,7 +104,7 @@ class PostController extends ApiController
             //throw 400;
         }
         $createPostService = $this->get('linkfloyd.frontend.service.post.create_post_service');
-        $post = $createPostService->insertPost($urlDetails, $this->getUser(), $title, $description);
+        $post = $createPostService->insertPost($urlDetails, $this->getUser(), $title, $description = null);
 
         $view = $this->view([
             'data' => $post,
