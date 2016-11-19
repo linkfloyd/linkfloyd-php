@@ -1,0 +1,10 @@
+{% extends "LinkfloydCoreBundle::layout.html.twig" %}
+
+{% block title %}LinkfloydCoreBundle:Post:insertPost{% endblock %}
+
+{% block main %}
+    {{ form_start(form, { 'action': path('core_bundle_post_edit',{id:post.id}), 'attr': { 'class': '' } }) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+
+{% endblock main %}

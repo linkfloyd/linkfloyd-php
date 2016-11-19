@@ -1,15 +1,35 @@
 homepage:
     path:     /
     defaults: { _controller: LinkfloydCoreBundle:Default:index }
+    methods:  [GET]
 
 core_bundle_post_index:
     path:     /posts
     defaults: { _controller: LinkfloydCoreBundle:Post:index }
+    methods:  [GET]
+
+core_bundle_post_show:
+    path:     /posts/{id}
+    defaults: { _controller: LinkfloydCoreBundle:Post:show }
+    methods:  [GET]
+    requirements:
+      id: '\d+'
 
 core_bundle_post_insert:
     path:     /posts/insert
     defaults: { _controller: LinkfloydCoreBundle:Post:insertPost }
+    methods:  [GET, POST]
 
 core_bundle_post_delete:
     path:     /posts/{id}/delete
     defaults: { _controller: LinkfloydCoreBundle:Post:deletePost }
+    methods:  [GET, DELETE]
+    requirements:
+      id: '\d+'
+
+core_bundle_post_edit:
+    path:     /posts/{id}/edit
+    defaults: { _controller: LinkfloydCoreBundle:Post:editPost }
+    methods:  [GET, POST]
+    requirements:
+      id: '\d+'

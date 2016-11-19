@@ -18,6 +18,11 @@ form:
 
 post:
   not_found: Paylaşım bulunamadı.
+  edit: Düzenle
+  delete: Sil
+  delete_confirm: Silmek istediğinize emin misiniz?
+  discuss: Tartışmaya Katıl
   message:
     success: Linki siteye ekledik.
+    edit_success: Güncelledik dediğin şeyi.
     delete: O iş tamam.
