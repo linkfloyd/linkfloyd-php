@@ -3,6 +3,11 @@ homepage:
     defaults: { _controller: LinkfloydCoreBundle:Default:index }
     methods:  [GET]
 
+core_bundle_user_profile:
+    path:     /user/{username}
+    defaults: { _controller: LinkfloydCoreBundle:User:profile }
+    methods:  [GET]
+
 core_bundle_post_index:
     path:     /posts
     defaults: { _controller: LinkfloydCoreBundle:Post:index }

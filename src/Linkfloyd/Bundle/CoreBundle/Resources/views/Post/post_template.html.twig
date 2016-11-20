@@ -7,7 +7,7 @@
             <strong>{{ post.detail.title }}</strong>
         </a>
         <p>
-            {{ post.user.username }} -
+            <a href="{{ url('core_bundle_user_profile',{username:post.user.username}) }}">{{ post.user.username }}</a> -
             <small>
                 {{ post.linkDetail.url }}
                 {% if post.linkDetail.title %}
