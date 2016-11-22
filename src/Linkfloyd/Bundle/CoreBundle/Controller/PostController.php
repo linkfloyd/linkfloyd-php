@@ -18,6 +18,11 @@ class PostController extends Controller
 
     public function insertPostAction(Request $request)
     {
+        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            $this->addFlash('danger', $this->get('translator')->trans('unauthenticated'));
+
+            return $this->redirectToRoute('fos_user_security_login');
+        }
         $form = $this->createForm(InsertPostForm::class);
         $form->handleRequest($request);
 
@@ -48,11 +53,16 @@ class PostController extends Controller
 
     public function editPostAction(Request $request, int $id)
     {
+        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            $this->addFlash('danger', $this->get('translator')->trans('unauthenticated'));
+
+            return $this->redirectToRoute('fos_user_security_login');
+        }
         $postService = $this->get('linkfloyd.frontend.service.post_service');
 
         $post = $postService->getPost($id);
         if (!$post) {
-            $this->addFlash('error', $this->get('translator')->trans('post.not_found'));
+            $this->addFlash('danger', $this->get('translator')->trans('post.not_found'));
 
             return $this->redirectToRoute('homepage');
         }
@@ -88,10 +98,15 @@ class PostController extends Controller
 
     public function deletePostAction(int $id)
     {
+        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            $this->addFlash('danger', $this->get('translator')->trans('unauthenticated'));
+
+            return $this->redirectToRoute('fos_user_security_login');
+        }
         $postService = $this->get('linkfloyd.frontend.service.post_service');
         $post = $postService->getPost($id);
         if (!$post) {
-            $this->addFlash('error', $this->get('translator')->trans('post.not_found'));
+            $this->addFlash('danger', $this->get('translator')->trans('post.not_found'));
 
             return $this->redirectToRoute('homepage'); //todo
         }
