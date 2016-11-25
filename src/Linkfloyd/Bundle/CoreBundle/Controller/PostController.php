@@ -66,9 +66,7 @@ class PostController extends Controller
 
             return $this->redirectToRoute('homepage');
         }
-        if (!$post->isAuthor($this->getUser())) {
-            $this->denyAccessUnlessGranted('edit', $post);
-        }
+        $this->denyAccessUnlessGranted('edit', $post);
 
         $form = $this->createForm(UpdatePostForm::class);
         $form->setData([
@@ -111,9 +109,7 @@ class PostController extends Controller
             return $this->redirectToRoute('homepage'); //todo
         }
 
-        if (!$post->isAuthor($this->getUser())) {
-            $this->denyAccessUnlessGranted('delete', $post);
-        }
+        $this->denyAccessUnlessGranted('delete', $post);
 
         $postService->deletePost($post);
 

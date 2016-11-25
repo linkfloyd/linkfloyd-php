@@ -1,31 +1,37 @@
 services:
-    linkfloyd.frontend.service.link_detail_service:
-        class: Linkfloyd\Bundle\CoreBundle\Service\LinkDetailService
-        arguments: ["@doctrine.orm.entity_manager"]
+  linkfloyd.frontend.service.link_detail_service:
+    class: Linkfloyd\Bundle\CoreBundle\Service\LinkDetailService
+    arguments: ["@doctrine.orm.entity_manager"]
 
-    linkfloyd.frontend.service.post_service:
-        class: Linkfloyd\Bundle\CoreBundle\Service\PostService
-        arguments: ["@doctrine.orm.entity_manager","@event_dispatcher"]
+  linkfloyd.frontend.service.post_service:
+    class: Linkfloyd\Bundle\CoreBundle\Service\PostService
+    arguments: ["@doctrine.orm.entity_manager","@event_dispatcher"]
 
-    linkfloyd.frontend.service.post_detail_service:
-        class: Linkfloyd\Bundle\CoreBundle\Service\PostDetailService
-        arguments: ["@doctrine.orm.entity_manager"]
+  linkfloyd.frontend.service.post_detail_service:
+    class: Linkfloyd\Bundle\CoreBundle\Service\PostDetailService
+    arguments: ["@doctrine.orm.entity_manager"]
 
-    linkfloyd.frontend.service.media_service:
-        class: Linkfloyd\Bundle\CoreBundle\Service\MediaService
-        arguments: ["@doctrine.orm.entity_manager"]
+  linkfloyd.frontend.service.media_service:
+    class: Linkfloyd\Bundle\CoreBundle\Service\MediaService
+    arguments: ["@doctrine.orm.entity_manager"]
 
-    linkfloyd.frontend.service.url_service:
-        class: Linkfloyd\Bundle\CoreBundle\Service\UrlService
-        arguments: ["@guzzle.client", "%shibby.iframely.apikey%"]
+  linkfloyd.frontend.service.url_service:
+    class: Linkfloyd\Bundle\CoreBundle\Service\UrlService
+    arguments: ["@guzzle.client", "%shibby.iframely.apikey%"]
 
-    linkfloyd.frontend.service.post.create_post_service:
-        class: Linkfloyd\Bundle\CoreBundle\Service\Post\CreatePostService
-        arguments:
-            - "@doctrine.orm.entity_manager"
-            - "@linkfloyd.frontend.service.media_service"
-            - "@linkfloyd.frontend.service.link_detail_service"
-            - "@linkfloyd.frontend.service.post_service"
+  linkfloyd.frontend.service.post.create_post_service:
+    class: Linkfloyd\Bundle\CoreBundle\Service\Post\CreatePostService
+    arguments:
+      - "@doctrine.orm.entity_manager"
+      - "@linkfloyd.frontend.service.media_service"
+      - "@linkfloyd.frontend.service.link_detail_service"
+      - "@linkfloyd.frontend.service.post_service"
 
-    guzzle.client:
-        class: GuzzleHttp\Client
+  linkfloyd.voter.post_voter:
+    class: Linkfloyd\Bundle\CoreBundle\Security\PostVoter
+    tags:
+      - { name: security.voter }
+    public: false
+
+  guzzle.client:
+    class: GuzzleHttp\Client

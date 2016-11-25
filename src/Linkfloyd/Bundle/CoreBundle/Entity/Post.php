@@ -4,6 +4,7 @@
  */
 namespace Linkfloyd\Bundle\CoreBundle\Entity;
 
+use FOS\UserBundle\Model\UserInterface;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
@@ -132,7 +133,7 @@ class Post
         return $this->detail;
     }
 
-    public function isAuthor(User $user = null)
+    public function isAuthor(UserInterface $user = null)
     {
         return $user && $user->getId() === $this->getUser()->getId();
     }

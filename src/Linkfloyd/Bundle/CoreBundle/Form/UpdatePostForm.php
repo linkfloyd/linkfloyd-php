@@ -11,8 +11,6 @@ use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\Validator\Constraints\Url;
 
 class UpdatePostForm extends AbstractType
 {
@@ -31,7 +29,7 @@ class UpdatePostForm extends AbstractType
                 'label_format' => 'form.insert_post.labels.title',
                 'attr' => ['rows' => 3, 'maxlength' => 350],
                 'constraints' => [
-                    new NotBlank(['message' => 'form.insert_post.validation.title_not_blank']),
+                    new Assert\NotBlank(['message' => 'form.insert_post.validation.title_not_blank']),
                     new Assert\Length([
                         'max' => 350,
                         'maxMessage' => 'form.insert_post.validation.title_too_long',
