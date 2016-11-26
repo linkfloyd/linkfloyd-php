@@ -142,3 +142,6 @@ fos_comment:
       view: IS_AUTHENTICATED_ANONYMOUSLY
       edit: ROLE_ADMIN
       delete: ROLE_ADMIN
+
+assetic:
+    bundles: [ "FOSCommentBundle" ]
