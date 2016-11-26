@@ -15,7 +15,7 @@ core_bundle_post_index:
 
 core_bundle_post_show:
     path:     /posts/{id}
-    defaults: { _controller: LinkfloydCoreBundle:Post:show }
+    defaults: { _controller: LinkfloydCoreBundle:Post:showPost }
     methods:  [GET]
     requirements:
       id: '\d+'

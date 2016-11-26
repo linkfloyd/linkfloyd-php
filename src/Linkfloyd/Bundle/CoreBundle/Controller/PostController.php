@@ -6,6 +6,7 @@ use Linkfloyd\Bundle\CoreBundle\Form\InsertPostForm;
 use Linkfloyd\Bundle\CoreBundle\Form\UpdatePostForm;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class PostController extends Controller
 {
@@ -14,6 +15,19 @@ class PostController extends Controller
         return $this->render('LinkfloydCoreBundle:Post:index.html.twig', array(
 
         ));
+    }
+
+    public function showPostAction(int $id)
+    {
+        $postService = $this->get('linkfloyd.frontend.service.post_service');
+        $post = $postService->getPost($id);
+        if (!$post) {
+            throw new NotFoundHttpException($this->get('translator')->trans('post.not_found'));
+        }
+
+        return $this->render('@LinkfloydCore/Post/show_post.html.twig', [
+            'post' => $post,
+        ]);
     }
 
     public function insertPostAction(Request $request)

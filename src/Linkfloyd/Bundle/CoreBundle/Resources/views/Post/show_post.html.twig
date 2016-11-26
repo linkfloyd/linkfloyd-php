@@ -1,0 +1,12 @@
+{% extends "LinkfloydCoreBundle::layout.html.twig" %}
+
+{% block main %}
+    {{ post.detail.title }}
+
+    <br>
+    <br>
+    {{ post.linkDetail.url}}
+    <br>
+    {{ post.linkDetail.title}}
+    {% include 'FOSCommentBundle:Thread:async.html.twig' with {'id': 'post_'~post.id} %}
+{% endblock main %}

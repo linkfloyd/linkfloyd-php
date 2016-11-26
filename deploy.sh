@@ -12,13 +12,14 @@ git pull origin develop
 composer install --prefer-dist --no-dev --no-interaction --optimize-autoloader -v
 php bin/console cache:clear --env=prod --no-debug -v
 
+php bin/console assetic:dump
+php bin/console assets:install
+
 php bin/console cache:warmup --env=prod --no-debug -v
 
 php bin/console doctrine:migrations:migrate --no-interaction
 
-/etc/init.d/php7.0-fpm reload
-/etc/init.d/nginx reload
-
 chown -R www-data.www-data .
 
-#print_info "Done!"
+/etc/init.d/php7.0-fpm reload
+/etc/init.d/nginx reload
