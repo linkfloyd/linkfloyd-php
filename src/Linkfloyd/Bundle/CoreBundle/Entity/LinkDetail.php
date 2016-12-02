@@ -95,6 +95,9 @@ class LinkDetail
      */
     public function setTitle($title)
     {
+        if(strlen($title) > 140){
+            $title = substr($title, 0, 140);
+        }
         $this->title = $title;
 
         return $this;
@@ -119,6 +122,9 @@ class LinkDetail
      */
     public function setDescription($description)
     {
+        if(strlen($description) > 500){
+            $description = substr($description, 0, 500);
+        }
         $this->description = $description;
 
         return $this;
