@@ -16,7 +16,16 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-
+        oauth_token:
+            pattern:      ^/oauth/v2/token
+            security:     false
+        api_doc:
+            pattern:      ^/api/doc
+            security:     false
+        api:
+            pattern:    ^/api
+            fos_oauth:  true
+            stateless:  true
         main:
             pattern: ^/
             form_login:
@@ -29,17 +38,6 @@ security:
                 lifetime: 31536000 # 365 days in seconds
                 path:     /
                 domain:   ~ # Defaults to the current domain from $_SERVER
-        oauth_token:
-            pattern:    ^/oauth/v2/token
-            security:   false
-        oauth_authorize:
-            pattern:    ^/oauth/v2/auth
-            security:   false #todo add
-        api:
-            pattern:    ^/api
-            fos_oauth:  true
-            stateless:  true
-            anonymous:  true # note that anonymous access is now enabled
 
     access_control:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
