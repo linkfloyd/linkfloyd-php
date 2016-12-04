@@ -10,11 +10,9 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- *
- * php bin/console create:oauth:client --grant-type="authorization_code" --redirect-uri=https://www.getpostman.com/oauth2/callback
+ * php bin/console create:oauth:client --grant-type="authorization_code" --redirect-uri=https://www.getpostman.com/oauth2/callback.
  *
  * Class CreateOauthClientCommand
- * @package Linkfloyd\Bundle\ApiBundle\Command
  */
 class CreateOauthClientCommand extends Command
 {

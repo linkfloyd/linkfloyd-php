@@ -13,7 +13,6 @@ class PostController extends Controller
     public function indexAction()
     {
         return $this->render('LinkfloydCoreBundle:Post:index.html.twig', array(
-
         ));
     }
 

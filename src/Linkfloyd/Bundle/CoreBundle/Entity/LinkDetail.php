@@ -1,7 +1,7 @@
 <?php
+
 namespace Linkfloyd\Bundle\CoreBundle\Entity;
 
-use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 
@@ -11,7 +11,7 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
  */
 class LinkDetail
 {
-    /**
+    /*
      * adds created_at, updated_at columns
      */
     use TimestampableEntity;
@@ -53,9 +53,9 @@ class LinkDetail
     private $thumbnailMedia;
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -63,7 +63,7 @@ class LinkDetail
     }
 
     /**
-     * Set url
+     * Set url.
      *
      * @param string $url
      *
@@ -77,7 +77,7 @@ class LinkDetail
     }
 
     /**
-     * Get url
+     * Get url.
      *
      * @return string
      */
@@ -87,7 +87,7 @@ class LinkDetail
     }
 
     /**
-     * Set title
+     * Set title.
      *
      * @param string $title
      *
@@ -95,7 +95,7 @@ class LinkDetail
      */
     public function setTitle($title)
     {
-        if(strlen($title) > 140){
+        if (strlen($title) > 140) {
             $title = substr($title, 0, 140);
         }
         $this->title = $title;
@@ -104,7 +104,7 @@ class LinkDetail
     }
 
     /**
-     * Get title
+     * Get title.
      *
      * @return string
      */
@@ -114,7 +114,7 @@ class LinkDetail
     }
 
     /**
-     * Set description
+     * Set description.
      *
      * @param string $description
      *
@@ -122,7 +122,7 @@ class LinkDetail
      */
     public function setDescription($description)
     {
-        if(strlen($description) > 500){
+        if (strlen($description) > 500) {
             $description = substr($description, 0, 500);
         }
         $this->description = $description;
@@ -131,7 +131,7 @@ class LinkDetail
     }
 
     /**
-     * Get description
+     * Get description.
      *
      * @return string
      */
@@ -141,7 +141,7 @@ class LinkDetail
     }
 
     /**
-     * Set thumbnailMedia
+     * Set thumbnailMedia.
      *
      * @param \Linkfloyd\Bundle\CoreBundle\Entity\Media $thumbnailMedia
      *
@@ -155,7 +155,7 @@ class LinkDetail
     }
 
     /**
-     * Get thumbnailMedia
+     * Get thumbnailMedia.
      *
      * @return \Linkfloyd\Bundle\CoreBundle\Entity\Media
      */
