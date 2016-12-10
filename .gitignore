@@ -51,3 +51,4 @@
 .idea
 node_modules
 bower_components
+.php_cs.cache

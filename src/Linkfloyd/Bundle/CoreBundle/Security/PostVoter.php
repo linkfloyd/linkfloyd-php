@@ -10,6 +10,7 @@ class PostVoter extends Voter
 {
     const EDIT = 'edit';
     const DELETE = 'delete';
+
     /**
      * Determines if the attribute and subject are supported by this voter.
      *

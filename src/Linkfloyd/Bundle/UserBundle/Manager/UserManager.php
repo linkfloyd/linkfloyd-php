@@ -33,7 +33,7 @@ class UserManager
         string $email,
         string $username,
         string $password
-    ) : User {
+    ): User {
         $user = $this->userManager->createUser();
         $user->setEmail($email)
             ->setPlainPassword($password)
@@ -46,7 +46,6 @@ class UserManager
             UserEvent::EVENT_NAME_CREATED,
             new UserEvent($user)
         );
-
 
         return $user;
     }

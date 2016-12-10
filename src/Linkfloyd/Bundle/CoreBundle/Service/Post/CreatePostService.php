@@ -6,6 +6,7 @@
 namespace Linkfloyd\Bundle\CoreBundle\Service\Post;
 
 use Doctrine\ORM\EntityManagerInterface;
+use Linkfloyd\Bundle\CoreBundle\Entity\Post;
 use Linkfloyd\Bundle\CoreBundle\Service\LinkDetailService;
 use Linkfloyd\Bundle\CoreBundle\Service\MediaService;
 use Linkfloyd\Bundle\CoreBundle\Service\PostService;
@@ -42,7 +43,7 @@ class CreatePostService
         $this->postService = $postService;
     }
 
-    public function insertPost(array $urlDetails, UserInterface $user, $title, $description)
+    public function insertPost(array $urlDetails, UserInterface $user, $title, $description): Post
     {
         $media = $this->mediaService->getOrCreateMedia(@$urlDetails['thumbnail_url']);
         $linkDetail = $this->linkDetailService->getOrCreateLinkDetail($urlDetails['url'], @$urlDetails['title'], @$urlDetails['description'], $media);

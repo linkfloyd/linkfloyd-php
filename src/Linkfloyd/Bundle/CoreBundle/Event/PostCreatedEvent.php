@@ -2,6 +2,7 @@
 /**
  * @author Guven Atbakan <guven@atbakan.com>
  */
+
 namespace Linkfloyd\Bundle\CoreBundle\Event;
 
 use Linkfloyd\Bundle\CoreBundle\Entity\Post;

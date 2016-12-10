@@ -1,4 +1,6 @@
 services:
-#    linkfloyd_api.example:
-#        class: Linkfloyd\Bundle\ApiBundle\Example
-#        arguments: ["@service_id", "plain_value", "%parameter%"]
+    linkfloyd_api.command.create_oauth_client_command:
+        class: Linkfloyd\Bundle\ApiBundle\Command\CreateOauthClientCommand
+        tags:
+            - { name: console.command }
+        arguments: ["@fos_oauth_server.client_manager"]
