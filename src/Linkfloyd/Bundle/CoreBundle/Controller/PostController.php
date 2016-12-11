@@ -4,6 +4,7 @@ namespace Linkfloyd\Bundle\CoreBundle\Controller;
 
 use Linkfloyd\Bundle\CoreBundle\Form\InsertPostForm;
 use Linkfloyd\Bundle\CoreBundle\Form\UpdatePostForm;
+use Linkfloyd\Bundle\CoreBundle\Security\PostVoter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -13,7 +14,6 @@ class PostController extends Controller
     public function indexAction()
     {
         return $this->render('LinkfloydCoreBundle:Post:index.html.twig', array(
-
         ));
     }
 
@@ -80,7 +80,7 @@ class PostController extends Controller
 
             return $this->redirectToRoute('homepage');
         }
-        $this->denyAccessUnlessGranted('edit', $post);
+        $this->denyAccessUnlessGranted(PostVoter::EDIT, $post);
 
         $form = $this->createForm(UpdatePostForm::class);
         $form->setData([
@@ -123,7 +123,7 @@ class PostController extends Controller
             return $this->redirectToRoute('homepage'); //todo
         }
 
-        $this->denyAccessUnlessGranted('delete', $post);
+        $this->denyAccessUnlessGranted(PostVoter::DELETE, $post);
 
         $postService->deletePost($post);
 

@@ -25,7 +25,7 @@ class LoadUserData extends AbstractFixture implements FixtureInterface, Containe
     }
 
     /**
-     * Load data fixtures with the passed EntityManager
+     * Load data fixtures with the passed EntityManager.
      *
      * @param ObjectManager $manager
      */
@@ -33,18 +33,18 @@ class LoadUserData extends AbstractFixture implements FixtureInterface, Containe
     {
         $userService = $this->container->get('linkfloyd.user_bundle.user_manager');
         $user = $userService->createUser(
-            "admin@admin.com",
-            "admin",
-            "123456"
+            'admin@admin.com',
+            'admin',
+            '123456'
         );
 
         $this->setReference('user', $user);
     }
 
     /**
-     * Get the order of this fixture
+     * Get the order of this fixture.
      *
-     * @return integer
+     * @return int
      */
     public function getOrder()
     {

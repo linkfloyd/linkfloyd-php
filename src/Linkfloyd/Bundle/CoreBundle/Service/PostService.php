@@ -2,6 +2,7 @@
 /**
  * @author Guven Atbakan <guven@atbakan.com>
  */
+
 namespace Linkfloyd\Bundle\CoreBundle\Service;
 
 use Doctrine\ORM\EntityManagerInterface;
@@ -14,6 +15,11 @@ use Pagerfanta\Pagerfanta;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
+/**
+ * Class PostService.
+ *
+ * @author Guven Atbakan <guven@atbakan.com>
+ */
 class PostService
 {
     /**
@@ -37,6 +43,11 @@ class PostService
         $this->eventDispatcher = $eventDispatcher;
     }
 
+    /**
+     * @param int $id
+     *
+     * @return Post|null
+     */
     public function getPost(int $id)
     {
         return $this->entityManager->getRepository('LinkfloydCoreBundle:Post')
@@ -44,8 +55,8 @@ class PostService
     }
 
     /**
-     * @param $page
-     * @param $limit //TODO: from parameters
+     * @param int $page
+     * @param int $limit
      *
      * @return Pagerfanta
      */
@@ -56,9 +67,12 @@ class PostService
         $adapter = new DoctrineORMAdapter($posts);
         $pagerfanta = new Pagerfanta($adapter);
 
-        /* TODO: add setCurrentPage method to try block */
-        $pagerfanta->setCurrentPage($page)
-            ->setMaxPerPage($limit);
+        try {
+            $pagerfanta->setCurrentPage($page)
+                ->setMaxPerPage($limit);
+        } catch (\Exception $e) {
+            return;
+        }
 
         return $pagerfanta;
     }
@@ -71,7 +85,7 @@ class PostService
      *
      * @return Post
      */
-    public function insertPost(UserInterface $user, LinkDetail $linkDetail, string $title, $description) : Post
+    public function insertPost(UserInterface $user, LinkDetail $linkDetail, string $title, $description): Post
     {
         $post = new Post();
         $post->setUser($user)

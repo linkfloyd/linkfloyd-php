@@ -7,7 +7,6 @@ namespace Linkfloyd\Bundle\ApiBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use Linkfloyd\Bundle\ApiBundle\Entity\Client;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -24,7 +23,7 @@ class LoadOAuthData implements FixtureInterface, ContainerAwareInterface
     }
 
     /**
-     * Load data fixtures with the passed EntityManager
+     * Load data fixtures with the passed EntityManager.
      *
      * @param ObjectManager $manager
      */

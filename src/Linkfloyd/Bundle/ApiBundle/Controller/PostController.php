@@ -2,6 +2,7 @@
 /**
  * @author Guven Atbakan <guven@atbakan.com>
  */
+
 namespace Linkfloyd\Bundle\ApiBundle\Controller;
 
 use Doctrine\Common\Annotations\Annotation\Required;
