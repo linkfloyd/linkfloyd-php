@@ -5,8 +5,8 @@
 
 namespace Linkfloyd\Bundle\UserBundle\Event;
 
-use Symfony\Component\EventDispatcher\Event;
 use Linkfloyd\Bundle\UserBundle\Entity\User;
+use Symfony\Component\EventDispatcher\Event;
 
 class UserEvent extends Event
 {

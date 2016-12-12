@@ -53,7 +53,7 @@ class PostController extends ApiController
         $view = $this->view([
             'meta' => [
                 'current_page' => $posts->getCurrentPage(),
-                'last_page' => $posts->getNbPages(),
+                'last_page'    => $posts->getNbPages(),
                 'total_record' => $posts->count(),
             ],
             'data' => $data,
@@ -85,9 +85,9 @@ class PostController extends ApiController
      *
      * @param Request $request
      *
-     * @return \Symfony\Component\HttpFoundation\Response
-     *
      * @throws \Exception
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function postPostAction(Request $request)
     {

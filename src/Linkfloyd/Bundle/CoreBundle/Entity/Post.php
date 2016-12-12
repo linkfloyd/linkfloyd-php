@@ -5,9 +5,9 @@
 
 namespace Linkfloyd\Bundle\CoreBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\UserInterface;
 use Gedmo\Mapping\Annotation as Gedmo;
-use Doctrine\ORM\Mapping as ORM;
 use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Linkfloyd\Bundle\UserBundle\Entity\User;

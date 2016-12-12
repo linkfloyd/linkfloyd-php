@@ -22,8 +22,7 @@ class LoginForm extends AbstractType
             ->add('password', PasswordType::class, [
                 'label_format' => 'form.login.labels.password',
             ])
-            ->add('submit', SubmitType::class)
-            ;
+            ->add('submit', SubmitType::class);
     }
 
     public function getName()

@@ -46,9 +46,9 @@ class UrlService
         }
 
         return [
-            'url' => $oembed['url'],
-            'title' => @$oembed['title'],
-            'description' => @$oembed['description'],
+            'url'           => $oembed['url'],
+            'title'         => @$oembed['title'],
+            'description'   => @$oembed['description'],
             'thumbnail_url' => @$oembed['thumbnail_url'],
         ];
     }

@@ -5,8 +5,8 @@
 
 namespace Linkfloyd\Bundle\ApiBundle\Entity;
 
-use FOS\OAuthServerBundle\Entity\AccessToken as BaseAccessToken;
 use Doctrine\ORM\Mapping as ORM;
+use FOS\OAuthServerBundle\Entity\AccessToken as BaseAccessToken;
 
 /**
  * @ORM\Table("oauth2_access_tokens")
