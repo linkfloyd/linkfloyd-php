@@ -53,7 +53,7 @@ class PostController extends ApiController
         $view = $this->view([
             'meta' => [
                 'current_page' => $posts->getCurrentPage(),
-                'last_page'    => $posts->getNbPages(),
+                'last_page' => $posts->getNbPages(),
                 'total_record' => $posts->count(),
             ],
             'data' => $data,

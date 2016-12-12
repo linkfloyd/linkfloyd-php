@@ -70,7 +70,7 @@ class PostController extends Controller
 
         $form = $this->createForm(UpdatePostForm::class);
         $form->setData([
-            'url'   => $post->getLinkDetail()->getUrl(),
+            'url' => $post->getLinkDetail()->getUrl(),
             'title' => $post->getDetail()->getTitle(),
         ]);
         $form->handleRequest($request);

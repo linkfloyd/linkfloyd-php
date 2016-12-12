@@ -22,18 +22,18 @@ class InsertPostForm extends AbstractType
         $builder
             ->add('url', UrlType::class, [
                 'label_format' => 'form.insert_post.labels.url',
-                'constraints'  => [
+                'constraints' => [
                     new NotBlank(['message' => 'form.insert_post.validation.url_not_blank']),
                     new Url(['message' => 'form.insert_post.validation.url_valid_url']),
                 ],
             ])
             ->add('title', TextareaType::class, [
                 'label_format' => 'form.insert_post.labels.title',
-                'attr'         => ['rows' => 3, 'maxlength' => 350],
-                'constraints'  => [
+                'attr' => ['rows' => 3, 'maxlength' => 350],
+                'constraints' => [
                     new NotBlank(['message' => 'form.insert_post.validation.title_not_blank']),
                     new Assert\Length([
-                        'max'        => 350,
+                        'max' => 350,
                         'maxMessage' => 'form.insert_post.validation.title_too_long',
                     ]),
                 ],
