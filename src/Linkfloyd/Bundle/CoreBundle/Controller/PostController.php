@@ -12,8 +12,8 @@ class PostController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('LinkfloydCoreBundle:Post:index.html.twig', array(
-        ));
+        return $this->render('LinkfloydCoreBundle:Post:index.html.twig', [
+        ]);
     }
 
     public function insertPostAction(Request $request)
@@ -46,9 +46,9 @@ class PostController extends Controller
             }
         }
 
-        return $this->render('LinkfloydCoreBundle:Post:insert_post.html.twig', array(
+        return $this->render('LinkfloydCoreBundle:Post:insert_post.html.twig', [
             'form' => $form->createView(),
-        ));
+        ]);
     }
 
     public function editPostAction(Request $request, int $id)
@@ -70,7 +70,7 @@ class PostController extends Controller
 
         $form = $this->createForm(UpdatePostForm::class);
         $form->setData([
-            'url' => $post->getLinkDetail()->getUrl(),
+            'url'   => $post->getLinkDetail()->getUrl(),
             'title' => $post->getDetail()->getTitle(),
         ]);
         $form->handleRequest($request);
@@ -88,10 +88,10 @@ class PostController extends Controller
             ]);
         }
 
-        return $this->render('LinkfloydCoreBundle:Post:update_post.html.twig', array(
+        return $this->render('LinkfloydCoreBundle:Post:update_post.html.twig', [
             'form' => $form->createView(),
             'post' => $post,
-        ));
+        ]);
     }
 
     public function deletePostAction(int $id)

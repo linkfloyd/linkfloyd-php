@@ -35,11 +35,11 @@ class UserControllerTest extends WebTestCase
         $password = $faker->password;
         $parameters = [
             'fos_user_registration_form' => [
-                '_token' => $csrfToken,
-                'username' => $faker->userName,
-                'email' => $faker->email,
+                '_token'        => $csrfToken,
+                'username'      => $faker->userName,
+                'email'         => $faker->email,
                 'plainPassword' => [
-                    'first' => $password,
+                    'first'  => $password,
                     'second' => $password,
                 ],
             ],
