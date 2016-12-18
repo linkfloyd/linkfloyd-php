@@ -12,17 +12,14 @@ cache:
     - $HOME/.composer
 
 env:
-  - SYMFONY_DEPRECATIONS_HELPER=weak
-  - SYMFONY_VERSION="3.0.*" DB=mysql
+  - SYMFONY_DEPRECATIONS_HELPER=weak SYMFONY_VERSION="3.0.*" DB=mysql
 
 before_script:
-  # Remove xdebug for performance issues
+# Remove xdebug for performance issues
 - phpenv config-rm xdebug.ini
-# Required packages
-- INI_FILE=~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini;
 - mysql -e 'create database IF NOT EXISTS symfony' -uroot
 - cp app/config/parameters.yml.dist app/config/parameters.yml
-- composer selfupdate
+- composer self-update
 
 install:
 - composer install --prefer-dist --optimize-autoloader
