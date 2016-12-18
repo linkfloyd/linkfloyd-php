@@ -47,9 +47,4 @@ class InsertPostForm extends AbstractType
             'csrf_protection' => false,
         ]);
     }
-
-    public function getName()
-    {
-        return 'login';
-    }
 }
