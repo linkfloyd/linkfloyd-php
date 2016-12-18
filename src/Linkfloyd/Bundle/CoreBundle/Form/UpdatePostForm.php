@@ -47,8 +47,4 @@ class UpdatePostForm extends AbstractType
         ]);
     }
 
-    public function getName()
-    {
-        return 'login';
-    }
 }

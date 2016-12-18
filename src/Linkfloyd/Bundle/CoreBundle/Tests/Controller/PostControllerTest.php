@@ -72,8 +72,16 @@ class PostControllerTest extends BaseTestCase
 
         $form['insert_post_form[title]'] = 'Title';
         $form['insert_post_form[url]'] = 'http://yalansavar.org';
-
         $crawler = $client->submit($form);
         $this->assertEquals(302, $client->getResponse()->getStatusCode());
+
+
+        //let add same link again (for coverage sake)
+
+        $form['insert_post_form[title]'] = 'Title';
+        $form['insert_post_form[url]'] = 'http://yalansavar.org';
+        $crawler = $client->submit($form);
+        $this->assertEquals(302, $client->getResponse()->getStatusCode());
+
     }
 }

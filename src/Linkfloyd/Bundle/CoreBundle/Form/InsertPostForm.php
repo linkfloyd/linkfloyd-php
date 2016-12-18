@@ -48,8 +48,4 @@ class InsertPostForm extends AbstractType
         ]);
     }
 
-    public function getName()
-    {
-        return 'login';
-    }
 }
