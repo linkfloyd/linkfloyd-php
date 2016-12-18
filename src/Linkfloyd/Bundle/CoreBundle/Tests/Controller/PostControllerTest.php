@@ -6,7 +6,6 @@ use Linkfloyd\Bundle\CoreBundle\Tests\BaseTestCase;
 
 class PostControllerTest extends BaseTestCase
 {
-
     public function testIndex()
     {
         $client = $this->getClient();
@@ -16,7 +15,7 @@ class PostControllerTest extends BaseTestCase
     }
 
     /**
-     * User cannot see post link page and should redirected to login page
+     * User cannot see post link page and should redirected to login page.
      */
     public function testGetInsertPostPageWithoutLoggedInUser()
     {
@@ -58,7 +57,7 @@ class PostControllerTest extends BaseTestCase
     }
 
     /**
-     * User should post something
+     * User should post something.
      */
     public function testPostPostWithLoggedInUser()
     {
@@ -69,7 +68,7 @@ class PostControllerTest extends BaseTestCase
         $form = $buttonCrawlerNode->form();
 
         $crawler = $client->submit($form);
-        $this->assertContains('has-error',$client->getResponse()->getContent()); //check per spesific errors
+        $this->assertContains('has-error', $client->getResponse()->getContent()); //check per spesific errors
 
         $form['insert_post_form[title]'] = 'Title';
         $form['insert_post_form[url]'] = 'http://yalansavar.org';
@@ -77,5 +76,4 @@ class PostControllerTest extends BaseTestCase
         $crawler = $client->submit($form);
         $this->assertEquals(302, $client->getResponse()->getStatusCode());
     }
-
 }
