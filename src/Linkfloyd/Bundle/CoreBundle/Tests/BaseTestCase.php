@@ -20,23 +20,26 @@ class BaseTestCase extends WebTestCase
         return static::createClient();
     }
 
+    /**
+     * @return \Symfony\Bundle\FrameworkBundle\Client|void
+     */
     protected function getLoggedInClient()
     {
-        $session = $this->client->getContainer()->get('session');
+        $client = static::createClient();
+        $session = $client->getContainer()->get('session');
 
         // the firewall context (defaults to the firewall name)
-        $firewall = 'main_firewall';
+        $firewall = 'main';
 
-        $token = new UsernamePasswordToken('admin', null, $firewall, array('ROLE_ADMIN'));
+        $user = $client->getContainer()->get('fos_user.user_manager')
+            ->findUserByUsername('admin');
+        $token = new UsernamePasswordToken($user, null, $firewall, array('ROLE_USER'));
         $session->set('_security_'.$firewall, serialize($token));
         $session->save();
 
         $cookie = new Cookie($session->getName(), $session->getId());
-        $this->client->getCookieJar()->set($cookie);
+        $client->getCookieJar()->set($cookie);
 
-        $crawler = $this->client->request('GET', '/posts/insert');
-        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-
-        return $this->client;
+        return $client;
     }
 }
