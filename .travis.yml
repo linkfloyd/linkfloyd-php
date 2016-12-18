@@ -1,0 +1,29 @@
+language: php
+
+php:
+  - '7.0'
+  - '7.1'
+
+services:
+  - mysql
+
+cache:
+  directories:
+    - $HOME/.composer
+
+env:
+  - SYMFONY_DEPRECATIONS_HELPER=weak SYMFONY_VERSION="3.0.*" DB=mysql
+
+before_install:
+# Remove xdebug for performance issues
+- phpenv config-rm xdebug.ini
+- mysql -e 'CREATE DATABASE symfony;'
+- composer self-update
+
+install:
+- cp app/config/parameters.yml.dist app/config/parameters.yml
+- composer install --prefer-dist --optimize-autoloader
+- php bin/console doctrine:migrations:migrate --env=test --no-interaction
+- php bin/console doctrine:fixtures:load  --env=test --no-interaction
+
+script: vendor/bin/phpunit

@@ -5,11 +5,11 @@ namespace Linkfloyd\Bundle\CoreBundle\Controller;
 use Linkfloyd\Bundle\CoreBundle\Form\InsertPostForm;
 use Linkfloyd\Bundle\CoreBundle\Form\UpdatePostForm;
 use Linkfloyd\Bundle\CoreBundle\Security\PostVoter;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Linkfloyd\Bundle\UserBundle\Entity\User;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-class PostController extends Controller
+class PostController extends BaseController
 {
     public function indexAction()
     {
@@ -32,11 +32,8 @@ class PostController extends Controller
 
     public function insertPostAction(Request $request)
     {
-        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
-            $this->addFlash('danger', $this->get('translator')->trans('unauthenticated'));
+        $this->denyAccessUnlessGranted(User::ROLE_DEFAULT);
 
-            return $this->redirectToRoute('fos_user_security_login');
-        }
         $form = $this->createForm(InsertPostForm::class);
         $form->handleRequest($request);
 
@@ -70,11 +67,7 @@ class PostController extends Controller
 
     public function editPostAction(Request $request, int $id)
     {
-        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
-            $this->addFlash('danger', $this->get('translator')->trans('unauthenticated'));
-
-            return $this->redirectToRoute('fos_user_security_login');
-        }
+        $this->denyAccessUnlessGranted(User::ROLE_DEFAULT);
         $postService = $this->get('linkfloyd.frontend.service.post_service');
 
         $post = $postService->getPost($id);
@@ -113,11 +106,8 @@ class PostController extends Controller
 
     public function deletePostAction(int $id)
     {
-        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
-            $this->addFlash('danger', $this->get('translator')->trans('unauthenticated'));
+        $this->denyAccessUnlessGranted(User::ROLE_DEFAULT);
 
-            return $this->redirectToRoute('fos_user_security_login');
-        }
         $postService = $this->get('linkfloyd.frontend.service.post_service');
         $post = $postService->getPost($id);
         if (!$post) {
