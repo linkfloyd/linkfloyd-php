@@ -12,7 +12,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @ORM\Entity
  * @ORM\ChangeTrackingPolicy("DEFERRED_EXPLICIT")
  */
-class Comment extends BaseComment implements SignedCommentInterface,VotableCommentInterface
+class Comment extends BaseComment implements SignedCommentInterface, VotableCommentInterface
 {
     /**
      * @ORM\Id
