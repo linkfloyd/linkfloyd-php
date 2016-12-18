@@ -4,6 +4,7 @@ namespace Linkfloyd\Bundle\CoreBundle\Controller;
 
 use Linkfloyd\Bundle\CoreBundle\Form\InsertPostForm;
 use Linkfloyd\Bundle\CoreBundle\Form\UpdatePostForm;
+use Linkfloyd\Bundle\CoreBundle\Security\PostVoter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -12,9 +13,8 @@ class PostController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('LinkfloydCoreBundle:Post:index.html.twig', array(
-
-        ));
+        return $this->render('LinkfloydCoreBundle:Post:index.html.twig', [
+        ]);
     }
 
     public function showPostAction(int $id)
@@ -41,15 +41,18 @@ class PostController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $url = ($form->get('url')->getData());
+            $url = $form->get('url')->getData();
             $title = $form->get('title')->getData();
-            //$description = $form->get('description')->getData();
 
             $urlService = $this->get('linkfloyd.frontend.service.url_service');
-            $postService = $this->get('linkfloyd.frontend.service.post.create_post_service');
             $urlDetails = $urlService->getUrlDetails($url);
+
+            $postService = $this->get('linkfloyd.frontend.service.post.create_post_service');
             $post = $postService->insertPost(
-                $urlDetails ? $urlDetails : ['url' => $url], $this->getUser(), $title, $description = null
+                $urlDetails ?: ['url' => $url],
+                $this->getUser(),
+                $title,
+                $description = null
             );
             if ($post) {
                 $this->addFlash('success', $this->get('translator')->trans('post.message.success'));
@@ -60,9 +63,9 @@ class PostController extends Controller
             }
         }
 
-        return $this->render('LinkfloydCoreBundle:Post:insert_post.html.twig', array(
+        return $this->render('LinkfloydCoreBundle:Post:insert_post.html.twig', [
             'form' => $form->createView(),
-        ));
+        ]);
     }
 
     public function editPostAction(Request $request, int $id)
@@ -80,7 +83,7 @@ class PostController extends Controller
 
             return $this->redirectToRoute('homepage');
         }
-        $this->denyAccessUnlessGranted('edit', $post);
+        $this->denyAccessUnlessGranted(PostVoter::EDIT, $post);
 
         $form = $this->createForm(UpdatePostForm::class);
         $form->setData([
@@ -102,10 +105,10 @@ class PostController extends Controller
             ]);
         }
 
-        return $this->render('LinkfloydCoreBundle:Post:update_post.html.twig', array(
+        return $this->render('LinkfloydCoreBundle:Post:update_post.html.twig', [
             'form' => $form->createView(),
             'post' => $post,
-        ));
+        ]);
     }
 
     public function deletePostAction(int $id)
@@ -123,7 +126,7 @@ class PostController extends Controller
             return $this->redirectToRoute('homepage'); //todo
         }
 
-        $this->denyAccessUnlessGranted('delete', $post);
+        $this->denyAccessUnlessGranted(PostVoter::DELETE, $post);
 
         $postService->deletePost($post);
 

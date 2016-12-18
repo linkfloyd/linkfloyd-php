@@ -8,19 +8,16 @@ use Doctrine\DBAL\Schema\Schema;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-class Version20161105154743 extends AbstractMigration
+class Version20161202210825 extends AbstractMigration
 {
     /**
-     * Adding index to url columns bcs of we are finding objects by URL.
-     *
      * @param Schema $schema
      */
     public function up(Schema $schema)
     {
         $this->abortIf($this->connection->getDatabasePlatform()->getName() != 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('CREATE INDEX media_url_index ON medias (url)');
-        $this->addSql('CREATE INDEX link_details_url_index ON link_details (url)');
+        $this->addSql('ALTER TABLE users DROP locked, DROP expired, DROP expires_at, DROP credentials_expired, DROP credentials_expire_at, CHANGE salt salt VARCHAR(255) DEFAULT NULL');
     }
 
     /**
@@ -30,7 +27,6 @@ class Version20161105154743 extends AbstractMigration
     {
         $this->abortIf($this->connection->getDatabasePlatform()->getName() != 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('DROP INDEX link_details_url_index ON link_details');
-        $this->addSql('DROP INDEX media_url_index ON medias');
+        $this->addSql('ALTER TABLE users ADD locked TINYINT(1) NOT NULL, ADD expired TINYINT(1) NOT NULL, ADD expires_at DATETIME DEFAULT NULL, ADD credentials_expired TINYINT(1) NOT NULL, ADD credentials_expire_at DATETIME DEFAULT NULL, CHANGE salt salt VARCHAR(255) NOT NULL COLLATE utf8_unicode_ci');
     }
 }

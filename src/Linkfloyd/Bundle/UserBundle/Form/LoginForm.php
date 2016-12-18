@@ -10,7 +10,6 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\SubmitButton;
 
 class LoginForm extends AbstractType
 {
@@ -23,8 +22,7 @@ class LoginForm extends AbstractType
             ->add('password', PasswordType::class, [
                 'label_format' => 'form.login.labels.password',
             ])
-            ->add('submit', SubmitType::class)
-            ;
+            ->add('submit', SubmitType::class);
     }
 
     public function getName()

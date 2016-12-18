@@ -2,6 +2,7 @@
 /**
  * @author Guven Atbakan <guven@atbakan.com>
  */
+
 namespace Linkfloyd\Bundle\ApiBundle\Controller;
 
 use Doctrine\Common\Annotations\Annotation\Required;
@@ -84,9 +85,9 @@ class PostController extends ApiController
      *
      * @param Request $request
      *
-     * @return \Symfony\Component\HttpFoundation\Response
-     *
      * @throws \Exception
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function postPostAction(Request $request)
     {

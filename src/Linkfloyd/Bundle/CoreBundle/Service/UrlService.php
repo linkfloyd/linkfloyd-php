@@ -1,7 +1,5 @@
 <?php
-/**
- * @author Guven Atbakan <guven@atbakan.com>
- */
+
 namespace Linkfloyd\Bundle\CoreBundle\Service;
 
 use GuzzleHttp\Client;
@@ -11,6 +9,8 @@ use GuzzleHttp\Client;
  * Örneğin, verilen URL için title, description, thumbnail gibi detayların alınması.
  *
  * Class UrlService
+ *
+ * @author Guven Atbakan <guven@atbakan.com>
  */
 class UrlService
 {
@@ -18,6 +18,7 @@ class UrlService
      * @var Client
      */
     private $client;
+
     /**
      * @var string
      */
@@ -29,6 +30,11 @@ class UrlService
         $this->iframelyApiKey = $iframelyApiKey;
     }
 
+    /**
+     * @param string $url
+     *
+     * @return array
+     */
     public function getUrlDetails(string $url)
     {
         $oembed = $this->getOembed($url);
@@ -54,12 +60,11 @@ class UrlService
 
             $response = $this->client->get($url);
 
-            if (200 == $response->getStatusCode()) {
+            if (200 === $response->getStatusCode()) {
                 return json_decode($response->getBody()->getContents(), true);
             }
         } catch (\Exception $e) {
+            return;
         }
-
-        return;
     }
 }

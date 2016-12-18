@@ -1,4 +1,5 @@
 <?php
+
 namespace Linkfloyd\Bundle\CoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -26,11 +27,10 @@ class Media
 
     //TODO: add media details such as width, height etc.
 
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -38,7 +38,7 @@ class Media
     }
 
     /**
-     * Set url
+     * Set url.
      *
      * @param string $url
      *
@@ -52,7 +52,7 @@ class Media
     }
 
     /**
-     * Get url
+     * Get url.
      *
      * @return string
      */

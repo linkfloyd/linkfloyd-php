@@ -6,23 +6,35 @@ use Doctrine\ORM\EntityManagerInterface;
 use Linkfloyd\Bundle\CoreBundle\Entity\Media;
 
 /**
+ * Interacts with Media Entity.
+ *
+ * Class MediaService
+ *
  * @author Guven Atbakan <guven@atbakan.com>
  */
 class MediaService
 {
-
     /**
      * @var EntityManagerInterface
      */
     private $entityManager;
 
+    /**
+     * MediaService constructor.
+     *
+     * @param EntityManagerInterface $entityManager
+     */
     public function __construct(EntityManagerInterface $entityManager)
     {
         $this->entityManager = $entityManager;
     }
 
     /**
-     * @param $url
+     * Checks Media Entity by given $url parameter.
+     * If not exists, creates new Media object.
+     *
+     * @param string|null $url
+     *
      * @return Media|null
      */
     public function getOrCreateMedia($url)
@@ -34,6 +46,7 @@ class MediaService
         if (!$media) {
             $media = $this->createMedia($url);
         }
+
         return $media;
     }
 
@@ -41,9 +54,10 @@ class MediaService
      * Created media object and persists to database.
      *
      * @param string $url
+     *
      * @return Media
      */
-    public function createMedia(string $url) : Media
+    public function createMedia(string $url): Media
     {
         $media = new Media();
         $media->setUrl($url);
@@ -52,30 +66,17 @@ class MediaService
 
         return $media;
     }
+
     /**
-     * Creates and inserts media object to database with COMMIT
+     * Returns Media Entity, if given url exists at Media entity.
      *
      * @param string $url
-     * @return Media
-     */
-    public function insertMedia(string $url) : Media
-    {
-        $media = $this->createMedia($url);
-
-        $this->entityManager->flush();
-
-        return $media;
-    }
-
-    /**
-     * Returns if a url inserted to Media entity.
-     * 
-     * @param string $url
+     *
      * @return Media|null
      */
     public function getMediaByUrl(string $url)
     {
         return $this->entityManager->getRepository('LinkfloydCoreBundle:Media')
-            ->findOneBy(['url'=>$url]);
+            ->findOneBy(['url' => $url]);
     }
 }

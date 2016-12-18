@@ -26,7 +26,7 @@ class LoadSamplePostData extends AbstractFixture implements FixtureInterface, Co
     }
 
     /**
-     * Load data fixtures with the passed EntityManager
+     * Load data fixtures with the passed EntityManager.
      *
      * @param ObjectManager $manager
      */
@@ -48,7 +48,7 @@ class LoadSamplePostData extends AbstractFixture implements FixtureInterface, Co
             'http://www.acikbilim.com/2015/02/duyurular/acik-bilim-v2-karsinizda.html',
         ];
         $faker = Factory::create('tr_TR');
-        for ($i = 1; $i<= 100; $i++) {
+        for ($i = 1; $i <= 100; ++$i) {
             $url = $urls[array_rand($urls)];
             $urlDetails = $urlService->getUrlDetails($url);
             $post = $postService->insertPost(
@@ -61,9 +61,9 @@ class LoadSamplePostData extends AbstractFixture implements FixtureInterface, Co
     }
 
     /**
-     * Get the order of this fixture
+     * Get the order of this fixture.
      *
-     * @return integer
+     * @return int
      */
     public function getOrder()
     {

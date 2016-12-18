@@ -2,6 +2,7 @@
 /**
  * @author Guven Atbakan <guven@atbakan.com>
  */
+
 namespace Linkfloyd\Bundle\CoreBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
@@ -37,15 +38,14 @@ class InsertPostForm extends AbstractType
                     ]),
                 ],
             ])
-            ->add('submit', SubmitType::class)
-        ;
+            ->add('submit', SubmitType::class);
     }
 
     public function setDefaultOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'csrf_protection' => false,
-        ));
+        ]);
     }
 
     public function getName()
