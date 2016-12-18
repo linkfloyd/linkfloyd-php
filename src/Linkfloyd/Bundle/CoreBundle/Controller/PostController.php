@@ -27,15 +27,18 @@ class PostController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $url = ($form->get('url')->getData());
+            $url = $form->get('url')->getData();
             $title = $form->get('title')->getData();
-            //$description = $form->get('description')->getData();
 
             $urlService = $this->get('linkfloyd.frontend.service.url_service');
-            $postService = $this->get('linkfloyd.frontend.service.post.create_post_service');
             $urlDetails = $urlService->getUrlDetails($url);
+
+            $postService = $this->get('linkfloyd.frontend.service.post.create_post_service');
             $post = $postService->insertPost(
-                $urlDetails ? $urlDetails : ['url' => $url], $this->getUser(), $title, $description = null
+                $urlDetails ?: ['url' => $url],
+                $this->getUser(),
+                $title,
+                $description = null
             );
             if ($post) {
                 $this->addFlash('success', $this->get('translator')->trans('post.message.success'));
