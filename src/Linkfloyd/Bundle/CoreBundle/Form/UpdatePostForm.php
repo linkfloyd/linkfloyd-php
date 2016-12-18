@@ -46,5 +46,4 @@ class UpdatePostForm extends AbstractType
             'csrf_protection' => false,
         ]);
     }
-
 }
