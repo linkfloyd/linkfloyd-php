@@ -11,6 +11,9 @@ elixir(function(mix) {
     mix.styles([
         '/bootstrap/dist/css/bootstrap.min.css',
     ], 'web/assets/css/stylesheets.css', 'bower_components');
+    mix.styles([
+        'custom.css',
+    ], 'web/assets/css/linkfloyd.css');
 
     mix.copy('bower_components/bootstrap/dist/fonts', 'web/assets/fonts');
 });
