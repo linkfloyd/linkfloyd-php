@@ -11,7 +11,7 @@ use Doctrine\DBAL\Schema\Schema;
 class Version20161105154743 extends AbstractMigration
 {
     /**
-     * Adding index to url columns bcs of we are finding objects by URL
+     * Adding index to url columns bcs of we are finding objects by URL.
      *
      * @param Schema $schema
      */
