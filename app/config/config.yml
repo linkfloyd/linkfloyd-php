@@ -138,8 +138,8 @@ fos_comment:
       edit: ROLE_ADMIN
       delete: ROLE_ADMIN
     vote:
-      create: IS_AUTHENTICATED_FULLY
-      view: IS_AUTHENTICATED_ANONYMOUSLY
+      create: ROLE_ADMIN
+      view: ROLE_ADMIN
       edit: ROLE_ADMIN
       delete: ROLE_ADMIN
 

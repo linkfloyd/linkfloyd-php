@@ -53,6 +53,16 @@ class Post
     private $detail;
 
     /**
+     * @ORM\Column(type="integer", options={"unsigned"=true})
+     */
+    private $commentCount;
+
+    public function __construct()
+    {
+        $this->setCommentCount(0);
+    }
+
+    /**
      * Get id.
      *
      * @return int
@@ -137,5 +147,29 @@ class Post
     public function isAuthor(UserInterface $user = null)
     {
         return $user && $user->getId() === $this->getUser()->getId();
+    }
+
+    /**
+     * Set commentCount.
+     *
+     * @param int $commentCount
+     *
+     * @return Post
+     */
+    public function setCommentCount($commentCount)
+    {
+        $this->commentCount = $commentCount;
+
+        return $this;
+    }
+
+    /**
+     * Get commentCount.
+     *
+     * @return int
+     */
+    public function getCommentCount()
+    {
+        return $this->commentCount;
     }
 }
