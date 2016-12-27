@@ -1,0 +1,1 @@
+{"version":3,"sources":["custom.css"],"names":[],"mappings":"AAAA;AACA;AACA;AACA","file":"linkfloyd.css","sourcesContent":[".panel {border: none; padding: 0;}\n.panel img {margin: 0 10px 0 0 !important; padding: 0 !important;}\n.panel-body {padding: 5px !important}\n.panel-default {margin: 0 0 10px 0}"]}
