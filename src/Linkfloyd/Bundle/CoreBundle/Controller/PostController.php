@@ -2,10 +2,11 @@
 
 namespace Linkfloyd\Bundle\CoreBundle\Controller;
 
-use Linkfloyd\Bundle\CoreBundle\Form\InsertPostForm;
+use Linkfloyd\Bundle\CoreBundle\Form\PostType;
 use Linkfloyd\Bundle\CoreBundle\Form\UpdatePostForm;
 use Linkfloyd\Bundle\CoreBundle\Security\PostVoter;
 use Linkfloyd\Bundle\UserBundle\Entity\User;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 
 class PostController extends BaseController
@@ -20,10 +21,13 @@ class PostController extends BaseController
     {
         $this->denyAccessUnlessGranted(User::ROLE_DEFAULT);
 
-        $form = $this->createForm(InsertPostForm::class);
+        $form = $this->createForm(PostType::class)
+            ->add('submit', SubmitType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            dump($form->getData());
+            die;
             $url = $form->get('url')->getData();
             $title = $form->get('title')->getData();
 
