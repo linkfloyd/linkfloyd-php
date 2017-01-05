@@ -5,13 +5,13 @@
 
 namespace Linkfloyd\Bundle\CoreBundle\Tests\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Linkfloyd\Bundle\CoreBundle\Tests\BaseTestCase;
 
-class DefaultControllerTest extends WebTestCase
+class DefaultControllerTest extends BaseTestCase
 {
     public function testIndex()
     {
-        $client = static::createClient();
+        $client = $this->getClient();
 
         $client->request('GET', '/');
 

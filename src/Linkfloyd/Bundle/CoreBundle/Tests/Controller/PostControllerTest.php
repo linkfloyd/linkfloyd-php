@@ -2,21 +2,30 @@
 
 namespace Linkfloyd\Bundle\CoreBundle\Tests\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Linkfloyd\Bundle\CoreBundle\Tests\BaseTestCase;
 
-class PostControllerTest extends WebTestCase
+class PostControllerTest extends BaseTestCase
 {
     public function testIndex()
     {
-        $client = static::createClient();
+        $client = $this->getClient();
 
         $crawler = $client->request('GET', '/posts');
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertContains('/login', $client->getResponse()->getContent());
     }
 
-    public function testInsertpost()
+    public function testInsertpostWithotLogin()
     {
-        $client = static::createClient();
+        $client = $this->getClient();
+
+        $crawler = $client->request('GET', '/posts/insert');
+        $this->assertEquals(302, $client->getResponse()->getStatusCode());
+    }
+
+    public function testInsertpostWithLogin()
+    {
+        $client = $this->getLoggedInClient();
 
         $crawler = $client->request('GET', '/posts/insert');
         $this->assertEquals(200, $client->getResponse()->getStatusCode());

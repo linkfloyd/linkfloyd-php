@@ -3,14 +3,14 @@
 namespace Linkfloyd\Bundle\CoreBundle\Tests\Controller;
 
 use Faker\Factory;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Linkfloyd\Bundle\CoreBundle\Tests\BaseTestCase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class UserControllerTest extends WebTestCase
+class UserControllerTest extends BaseTestCase
 {
     public function testLogin()
     {
-        $client = static::createClient();
+        $client = $this->getClient();
 
         $client->request('GET', '/login');
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
@@ -18,15 +18,15 @@ class UserControllerTest extends WebTestCase
 
     public function testRegister()
     {
-        $client = static::createClient();
+        $client = $this->getClient();
 
-        $crawler = $client->request('GET', '/register');
+        $crawler = $client->request('GET', '/register/');
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
 
     public function testUserRegister()
     {
-        $client = static::createClient();
+        $client = $this->getClient();
         /** @var ContainerInterface $container */
         $container = $client->getContainer();
         $csrfToken = $container->get('security.csrf.token_manager')->getToken('registration');
@@ -52,10 +52,13 @@ class UserControllerTest extends WebTestCase
 
     public function testLogout()
     {
-        $client = static::createClient();
-
+        $client = $this->getClient();
         $crawler = $client->request('GET', '/logout');
-        /* shoudl redirect, bcs there is no logged user */
         $this->assertEquals(302, $client->getResponse()->getStatusCode());
+
+        $client = $this->getLoggedInClient();
+        $crawler = $client->request('GET', '/logout');
+        $this->assertEquals(302, $client->getResponse()->getStatusCode());
+        //todo check there is no logged in user
     }
 }
