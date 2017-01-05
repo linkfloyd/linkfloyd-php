@@ -33,6 +33,7 @@
         "friendsofsymfony/comment-bundle": "~2.0",
         "friendsofsymfony/oauth-server-bundle": "dev-master",
         "friendsofsymfony/rest-bundle": "~2.1",
+        "symfony/assetic-bundle": "^2.8",
         "doctrine/doctrine-migrations-bundle": "^1.0",
         "gedmo/doctrine-extensions": "^2.4",
         "nelmio/api-doc-bundle": "^2.13",

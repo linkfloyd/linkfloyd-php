@@ -37,13 +37,19 @@ class UpdatePostForm extends AbstractType
                     ]),
                 ],
             ])
-            ->add('submit', SubmitType::class);
+            ->add('submit', SubmitType::class)
+        ;
     }
 
     public function setDefaultOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults([
+        $resolver->setDefaults(array(
             'csrf_protection' => false,
-        ]);
+        ));
+    }
+
+    public function getName()
+    {
+        return 'login';
     }
 }

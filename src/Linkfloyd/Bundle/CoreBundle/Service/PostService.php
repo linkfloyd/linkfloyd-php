@@ -114,4 +114,14 @@ class PostService
         $this->entityManager->remove($post);
         $this->entityManager->flush();
     }
+
+    public function increaseCommentCount(Post $post): Post
+    {
+        $post->setCommentCount($post->getCommentCount() + 1);
+
+        $this->entityManager->persist($post);
+        $this->entityManager->flush();
+
+        return $post;
+    }
 }

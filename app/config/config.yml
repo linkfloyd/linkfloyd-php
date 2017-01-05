@@ -108,3 +108,40 @@ fos_oauth_server:
         user_provider: fos_user.user_provider.username_email             # This property will be used when valid credentials are given to load the user upon access token creation
 
 nelmio_api_doc: ~
+
+fos_comment:
+  acl: true
+  service:
+    acl:
+      thread:  fos_comment.acl.thread.roles
+      comment: fos_comment.acl.comment.roles
+      vote:    fos_comment.acl.vote.roles
+    manager:
+      thread:  fos_comment.manager.thread.acl
+      comment: fos_comment.manager.comment.acl
+      vote:    fos_comment.manager.vote.acl
+  db_driver: orm
+  class:
+    model:
+     comment: Linkfloyd\Bundle\CoreBundle\Entity\Comment
+     thread: Linkfloyd\Bundle\CoreBundle\Entity\Thread
+     vote: Linkfloyd\Bundle\CoreBundle\Entity\Vote
+  acl_roles:
+    comment:
+      create: IS_AUTHENTICATED_FULLY
+      view: IS_AUTHENTICATED_ANONYMOUSLY
+      edit: ROLE_ADMIN
+      delete: ROLE_ADMIN
+    thread:
+      create: IS_AUTHENTICATED_ANONYMOUSLY
+      view: IS_AUTHENTICATED_ANONYMOUSLY
+      edit: ROLE_ADMIN
+      delete: ROLE_ADMIN
+    vote:
+      create: ROLE_ADMIN
+      view: ROLE_ADMIN
+      edit: ROLE_ADMIN
+      delete: ROLE_ADMIN
+
+assetic:
+    bundles: [ "FOSCommentBundle" ]

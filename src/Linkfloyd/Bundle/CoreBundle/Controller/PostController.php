@@ -5,37 +5,51 @@ namespace Linkfloyd\Bundle\CoreBundle\Controller;
 use Linkfloyd\Bundle\CoreBundle\Form\InsertPostForm;
 use Linkfloyd\Bundle\CoreBundle\Form\UpdatePostForm;
 use Linkfloyd\Bundle\CoreBundle\Security\PostVoter;
-use Linkfloyd\Bundle\UserBundle\Entity\User;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-class PostController extends BaseController
+class PostController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('LinkfloydCoreBundle:Post:index.html.twig', [
+        return $this->render('LinkfloydCoreBundle:Post:index.html.twig', array(
+        ));
+    }
+
+    public function showPostAction(int $id)
+    {
+        $postService = $this->get('linkfloyd.frontend.service.post_service');
+        $post = $postService->getPost($id);
+        if (!$post) {
+            throw new NotFoundHttpException($this->get('translator')->trans('post.not_found'));
+        }
+
+        return $this->render('@LinkfloydCore/Post/show_post.html.twig', [
+            'post' => $post,
         ]);
     }
 
     public function insertPostAction(Request $request)
     {
-        $this->denyAccessUnlessGranted(User::ROLE_DEFAULT);
+        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            $this->addFlash('danger', $this->get('translator')->trans('unauthenticated'));
 
+            return $this->redirectToRoute('fos_user_security_login');
+        }
         $form = $this->createForm(InsertPostForm::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $url = $form->get('url')->getData();
+            $url = ($form->get('url')->getData());
             $title = $form->get('title')->getData();
+            //$description = $form->get('description')->getData();
 
             $urlService = $this->get('linkfloyd.frontend.service.url_service');
-            $urlDetails = $urlService->getUrlDetails($url);
-
             $postService = $this->get('linkfloyd.frontend.service.post.create_post_service');
+            $urlDetails = $urlService->getUrlDetails($url);
             $post = $postService->insertPost(
-                $urlDetails ?: ['url' => $url],
-                $this->getUser(),
-                $title,
-                $description = null
+                $urlDetails ? $urlDetails : ['url' => $url], $this->getUser(), $title, $description = null
             );
             if ($post) {
                 $this->addFlash('success', $this->get('translator')->trans('post.message.success'));
@@ -46,14 +60,18 @@ class PostController extends BaseController
             }
         }
 
-        return $this->render('LinkfloydCoreBundle:Post:insert_post.html.twig', [
+        return $this->render('LinkfloydCoreBundle:Post:insert_post.html.twig', array(
             'form' => $form->createView(),
-        ]);
+        ));
     }
 
     public function editPostAction(Request $request, int $id)
     {
-        $this->denyAccessUnlessGranted(User::ROLE_DEFAULT);
+        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            $this->addFlash('danger', $this->get('translator')->trans('unauthenticated'));
+
+            return $this->redirectToRoute('fos_user_security_login');
+        }
         $postService = $this->get('linkfloyd.frontend.service.post_service');
 
         $post = $postService->getPost($id);
@@ -84,16 +102,19 @@ class PostController extends BaseController
             ]);
         }
 
-        return $this->render('LinkfloydCoreBundle:Post:update_post.html.twig', [
+        return $this->render('LinkfloydCoreBundle:Post:update_post.html.twig', array(
             'form' => $form->createView(),
             'post' => $post,
-        ]);
+        ));
     }
 
     public function deletePostAction(int $id)
     {
-        $this->denyAccessUnlessGranted(User::ROLE_DEFAULT);
+        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            $this->addFlash('danger', $this->get('translator')->trans('unauthenticated'));
 
+            return $this->redirectToRoute('fos_user_security_login');
+        }
         $postService = $this->get('linkfloyd.frontend.service.post_service');
         $post = $postService->getPost($id);
         if (!$post) {

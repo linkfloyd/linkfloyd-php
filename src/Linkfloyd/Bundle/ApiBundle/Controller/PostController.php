@@ -85,9 +85,9 @@ class PostController extends ApiController
      *
      * @param Request $request
      *
-     * @throws \Exception
-     *
      * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @throws \Exception
      */
     public function postPostAction(Request $request)
     {

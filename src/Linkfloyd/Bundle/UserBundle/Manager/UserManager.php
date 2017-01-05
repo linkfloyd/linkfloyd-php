@@ -49,9 +49,4 @@ class UserManager
 
         return $user;
     }
-
-    public function getUserByUsername($username)
-    {
-        return $this->userManager->findUserByUsername($username);
-    }
 }

@@ -13,13 +13,6 @@ use Faker\Factory;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-/**
- * @codeCoverageIgnore
- *
- * Class LoadSamplePostData
- *
- * @author Guven Atbakan <guven@atbakan.com>
- */
 class LoadSamplePostData extends AbstractFixture implements FixtureInterface, ContainerAwareInterface, OrderedFixtureInterface
 {
     /**

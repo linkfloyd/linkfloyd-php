@@ -2,9 +2,10 @@
 
 namespace Linkfloyd\Bundle\CoreBundle\Controller;
 
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-class DefaultController extends BaseController
+class DefaultController extends Controller
 {
     public function indexAction(Request $request)
     {

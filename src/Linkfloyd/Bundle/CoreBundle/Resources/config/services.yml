@@ -33,5 +33,12 @@ services:
       - { name: security.voter }
     public: false
 
+  #Event Listeners
+  linkfloyd.event_listener.post_comment_count_listener:
+    class: Linkfloyd\Bundle\CoreBundle\EventListener\PostCommentCountListener
+    arguments: ['@linkfloyd.frontend.service.post_service']
+    tags:
+      - { name: kernel.event_listener, event: 'fos_comment.comment.post_persist', method: 'onCommentPostPersist'}
+
   guzzle.client:
     class: GuzzleHttp\Client

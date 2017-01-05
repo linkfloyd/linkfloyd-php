@@ -20,6 +20,11 @@
                     {{ 'post.discuss' | trans }}
                 </a>
             </small>#}
+            <small>
+                <a href="{{ url('core_bundle_post_show',{id: post.id}) }}">
+                    {{ 'post.comment_count'|transchoice(post.commentCount) }}
+                </a>
+            </small>
             {% if post.isAuthor(app.user) %}
                 <small>
                     |

@@ -5,8 +5,8 @@
 
 namespace Linkfloyd\Bundle\ApiBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use FOS\OAuthServerBundle\Entity\AuthCode as BaseAuthCode;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Table("oauth2_auth_codes")

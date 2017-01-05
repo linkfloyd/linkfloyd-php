@@ -5,9 +5,9 @@
 
 namespace Linkfloyd\Bundle\CoreBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\UserInterface;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Doctrine\ORM\Mapping as ORM;
 use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Linkfloyd\Bundle\UserBundle\Entity\User;
@@ -51,6 +51,16 @@ class Post
      * @ORM\OneToOne(targetEntity="Linkfloyd\Bundle\CoreBundle\Entity\PostDetail", mappedBy="post")
      */
     private $detail;
+
+    /**
+     * @ORM\Column(type="integer", options={"unsigned"=true})
+     */
+    private $commentCount;
+
+    public function __construct()
+    {
+        $this->setCommentCount(0);
+    }
 
     /**
      * Get id.
@@ -137,5 +147,29 @@ class Post
     public function isAuthor(UserInterface $user = null)
     {
         return $user && $user->getId() === $this->getUser()->getId();
+    }
+
+    /**
+     * Set commentCount.
+     *
+     * @param int $commentCount
+     *
+     * @return Post
+     */
+    public function setCommentCount($commentCount)
+    {
+        $this->commentCount = $commentCount;
+
+        return $this;
+    }
+
+    /**
+     * Get commentCount.
+     *
+     * @return int
+     */
+    public function getCommentCount()
+    {
+        return $this->commentCount;
     }
 }

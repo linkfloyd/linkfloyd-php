@@ -1,7 +1,7 @@
 <?php
 
-use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\HttpKernel\Kernel;
+use Symfony\Component\Config\Loader\LoaderInterface;
 
 class AppKernel extends Kernel
 {
@@ -20,7 +20,8 @@ class AppKernel extends Kernel
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new FOS\RestBundle\FOSRestBundle(),
-            //new FOS\CommentBundle\FOSCommentBundle(),
+            new FOS\CommentBundle\FOSCommentBundle(),
+            new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle($this),
             new Linkfloyd\Bundle\UserBundle\UserBundle(),
             new Linkfloyd\Bundle\CoreBundle\LinkfloydCoreBundle(),

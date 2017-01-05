@@ -8,7 +8,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class UserControllerTest extends BaseTestCase
 {
-    public function testLoginPageWorking()
+    public function testLogin()
     {
         $client = $this->getClient();
 
@@ -16,7 +16,7 @@ class UserControllerTest extends BaseTestCase
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
 
-    public function testRegisterPageWorking()
+    public function testRegister()
     {
         $client = $this->getClient();
 
@@ -27,7 +27,6 @@ class UserControllerTest extends BaseTestCase
     public function testUserRegister()
     {
         $client = $this->getClient();
-
         /** @var ContainerInterface $container */
         $container = $client->getContainer();
         $csrfToken = $container->get('security.csrf.token_manager')->getToken('registration');
@@ -54,9 +53,12 @@ class UserControllerTest extends BaseTestCase
     public function testLogout()
     {
         $client = $this->getClient();
-
         $crawler = $client->request('GET', '/logout');
-        /* should redirect, bcs there is no logged user */
         $this->assertEquals(302, $client->getResponse()->getStatusCode());
+
+        $client = $this->getLoggedInClient();
+        $crawler = $client->request('GET', '/logout');
+        $this->assertEquals(302, $client->getResponse()->getStatusCode());
+        //todo check there is no logged in user
     }
 }
