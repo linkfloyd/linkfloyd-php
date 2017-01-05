@@ -133,7 +133,7 @@ fos_comment:
       edit: ROLE_ADMIN
       delete: ROLE_ADMIN
     thread:
-      create: IS_AUTHENTICATED_FULLY
+      create: IS_AUTHENTICATED_ANONYMOUSLY
       view: IS_AUTHENTICATED_ANONYMOUSLY
       edit: ROLE_ADMIN
       delete: ROLE_ADMIN

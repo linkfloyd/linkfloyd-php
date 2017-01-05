@@ -24,6 +24,7 @@ post:
   delete: Sil
   delete_confirm: Silmek istediğinize emin misiniz?
   discuss: Tartışmaya Katıl
+  comment_count: "{0}Yorum Yaz!|]0,Inf]%count% Yorum Var"
   message:
     success: Linki siteye ekledik.
     edit_success: Güncelledik dediğin şeyi.
