@@ -3,26 +3,33 @@ fos_comment_api:
     resource: "@FOSCommentBundle/Resources/config/routing.yml"
     prefix: /comment_api
     defaults: { _format: html }
+    schemes:  ['%http_protocol%']
 
 linkfloyd_core:
     resource: "@LinkfloydCoreBundle/Resources/config/routing.yml"
     prefix:   /
+    schemes:  ['%http_protocol%']
 
 linkfloyd_api:
     resource: "@LinkfloydApiBundle/Controller"
     type: annotation
     defaults: {_format: json}
     prefix:   /api
+    schemes:  ['%http_protocol%']
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+    schemes:  ['%http_protocol%']
 
 NelmioApiDocBundle:
     resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
     prefix:   /api/doc
+    schemes:  ['%http_protocol%']
 
 fos_oauth_server_token:
     resource: "@FOSOAuthServerBundle/Resources/config/routing/token.xml"
+    schemes:  ['%http_protocol%']
 
 fos_oauth_server_authorize:
     resource: "@FOSOAuthServerBundle/Resources/config/routing/authorize.xml"
+    schemes:  ['%http_protocol%']

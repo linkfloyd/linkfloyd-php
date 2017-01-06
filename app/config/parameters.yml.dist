@@ -20,3 +20,4 @@ parameters:
 
     shibby.iframely.apikey: put-your-api-key-here
     google_analytics_identity:
+    http_protocol: http
