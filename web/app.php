@@ -14,6 +14,7 @@ $kernel->loadClassCache();
 //Request::enableHttpMethodParameterOverride();
 $request = Request::createFromGlobals();
 Request::setTrustedHeaderName(Request::HEADER_FORWARDED, null);
+Request::setTrustedProxies($request->getClientIps());
 $response = $kernel->handle($request);
 $response->send();
 $kernel->terminate($request, $response);
