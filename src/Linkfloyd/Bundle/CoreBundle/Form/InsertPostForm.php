@@ -38,8 +38,8 @@ class InsertPostForm extends AbstractType
                     ]),
                 ],
             ])
-            ->add('submit', SubmitType::class,[
-                'attr'=> ['class'=>'btn btn-info']
+            ->add('submit', SubmitType::class, [
+                'attr' => ['class' => 'btn btn-info'],
             ])
         ;
     }
