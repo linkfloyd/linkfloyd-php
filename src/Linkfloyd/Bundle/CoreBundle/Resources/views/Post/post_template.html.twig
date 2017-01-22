@@ -1,43 +1,37 @@
-<div class="panel panel-default">
-    <div class="panel-body">
-        {% if post.linkDetail.thumbnailMedia %}
-            <img src="{{ post.linkDetail.thumbnailMedia.url }}" width="100" style="float: left; margin: 15px;">
-        {% endif %}
+<article class="postcard postcard-default">
+    {% if post.linkDetail.thumbnailMedia %}
+        <img src="{{ post.linkDetail.thumbnailMedia.url }}" width="70px" style="float: left; margin: 15px;">
+    {% endif %}
+    <h2>
         <a href="{{ post.linkDetail.url }}" rel="nofollow">
-            <strong>{{ post.detail.title }}</strong>
+            {{ post.detail.title }}
         </a>
-        <p>
-            <a href="{{ url('core_bundle_user_profile',{username:post.user.username}) }}">{{ post.user.username }}</a> -
-            <small>
-                {{ post.linkDetail.url }}
-                {% if post.linkDetail.title %}
-                    ({{ post.linkDetail.title }})
-                {% endif %}
-            </small>
-            <br/>
-            {#<small>
-                <a href="{{ url('core_bundle_post_show',{id:post.id}) }}">
-                    {{ 'post.discuss' | trans }}
-                </a>
-            </small>#}
-            <small>
-                <a href="{{ url('core_bundle_post_show',{id: post.id}) }}">
-                    {{ 'post.comment_count'|transchoice(post.commentCount) }}
-                </a>
-            </small>
-            {% if post.isAuthor(app.user) %}
-                <small>
-                    |
-                    <a href="{{ url('core_bundle_post_edit',{id:post.id}) }}">
-                        {{ 'post.edit' | trans }}
-                    </a>
-                    |
-                    <a href="{{ url('core_bundle_post_delete',{id:post.id}) }}"
-                       onclick="return confirm('{{ 'post.delete_confirm' | trans }}')">
-                        {{ 'post.delete' | trans }}
-                    </a>
-                </small>
-            {% endif %}
-        </p>
+    </h2>
+    <div class="post-tags">
+
     </div>
-</div>
+    <a href="{{ url('core_bundle_user_profile',{username:post.user.username}) }}"
+       class="post-user-btn">{{ post.user.username }}</a>
+    <a href="{{ url('core_bundle_post_show',{id: post.id}) }}" class="post-tag">
+        {{ 'post.comment_count'|transchoice(post.commentCount) }}
+    </a>
+    <span class="post-time">{{ post.createdAt|ago }}</span>
+    <br/>
+    <span class="post-link">( {{ post.linkDetail.url }} {% if post.linkDetail.title %}
+            <small> - {{ post.linkDetail.title }}</small>{% endif %} )</span>
+    {% if post.isAuthor(app.user) %}
+        <p>
+            <small>
+                <a href="{{ url('core_bundle_post_edit',{id:post.id}) }}">
+                    {{ 'post.edit' | trans }}
+                </a>
+                |
+                <a href="{{ url('core_bundle_post_delete',{id:post.id}) }}"
+                   onclick="return confirm('{{ 'post.delete_confirm' | trans }}')">
+                    {{ 'post.delete' | trans }}
+                </a>
+            </small>
+        </p>
+    {% endif %}
+</article>
+

@@ -1,10 +1,12 @@
 {% extends "LinkfloydCoreBundle::layout.html.twig" %}
 
 {% block main %}
+<div class="post-wrap">
     {% for post in posts %}
         {% include '@LinkfloydCore/Post/post_template.html.twig' with {'post':post} %}
     {% endfor %}
     <div class="pagerfanta">
         {{ pagerfanta(posts, 'twitter_bootstrap3') }}
     </div>
+</div>
 {% endblock main %}

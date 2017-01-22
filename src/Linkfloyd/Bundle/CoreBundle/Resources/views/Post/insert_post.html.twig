@@ -3,8 +3,9 @@
 {% block title %}LinkfloydCoreBundle:Post:insertPost{% endblock %}
 
 {% block main %}
+    <div class="content">
     {{ form_start(form, { 'action': path('core_bundle_post_insert'), 'attr': { 'class': '' } }) }}
     {{ form_widget(form) }}
     {{ form_end(form) }}
-
+    </div>
 {% endblock main %}
