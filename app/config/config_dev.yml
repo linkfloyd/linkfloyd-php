@@ -13,7 +13,7 @@ web_profiler:
 
 snc_redis:
   profiler_storage:
-    client: cache
+    client: profiler
     ttl: 3600
 
 monolog:

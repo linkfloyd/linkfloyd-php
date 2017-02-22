@@ -17,6 +17,7 @@ parameters:
 
     redis_host_default: redis://localhost/1
     redis_host_cache: redis://localhost/2
+    redis_host_profiler: redis://localhost/3
 
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
