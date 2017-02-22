@@ -11,6 +11,11 @@ web_profiler:
     toolbar: true
     intercept_redirects: false
 
+snc_redis:
+  profiler_storage:
+    client: cache
+    ttl: 3600
+
 monolog:
     handlers:
         main:

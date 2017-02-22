@@ -4,8 +4,14 @@ imports:
 doctrine:
     orm:
         metadata_cache_driver: apc
-        result_cache_driver: apc
+        #result_cache_driver: apc
         query_cache_driver: apc
+
+snc_redis:
+  doctrine:
+    result_cache:
+      client: cache
+      entity_manager: [default]  # you may specify multiple entity_managers
 
 monolog:
     handlers:

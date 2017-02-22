@@ -28,6 +28,7 @@ class AppKernel extends Kernel
             new Linkfloyd\Bundle\ApiBundle\LinkfloydApiBundle(),
             new FOS\OAuthServerBundle\FOSOAuthServerBundle(),
             new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
+            new Snc\RedisBundle\SncRedisBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

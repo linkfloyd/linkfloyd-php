@@ -84,6 +84,9 @@ fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
     user_class: Linkfloyd\Bundle\UserBundle\Entity\User
+    from_email:
+        address:        noreply@linkfloyd.com
+        sender_name:    Linkfloyd
 
 doctrine_migrations:
     dir_name: "%kernel.root_dir%/DoctrineMigrations"
@@ -145,3 +148,19 @@ fos_comment:
 
 assetic:
     bundles: [ "FOSCommentBundle" ]
+
+snc_redis:
+  clients:
+    default:
+      type: predis
+      alias: default
+      dsn: '%redis_host_default%'
+    cache:
+      type: predis
+      alias: cache
+      dsn: '%redis_host_cache%'
+  session:
+    client: default
+    prefix: linkfloyd_session
+    locking: false
+
