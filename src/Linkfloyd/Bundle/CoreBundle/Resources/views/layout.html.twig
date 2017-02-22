@@ -1,13 +1,14 @@
 <html>
 <head>
     <meta charset="UTF-8"/>
-    <title>{% block title %}Linkfloyd!{% endblock %}</title>
+    <title>{{ siteTitle ?? 'Linkfloyd' }}</title>
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
-    <link rel="stylesheet" href="{{ asset('assets/css/stylesheets.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&subset=latin-ext" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('assets/ui/dist/css/floydstyle.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/ui/example/example.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/comments.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/linkfloyd.css') }}">
     {% block stylesheets %}{% endblock %}
-    <script src="{{ asset('assets/js/scripts.js') }}"></script>
+    <script src="{{ asset('assets/ui/dist/js/vendor.js') }}"></script>
 </head>
 <body class="body-standart-back-color">
 <div class="wrapper">
@@ -31,11 +32,10 @@
                     <a href="{{ url('fos_user_security_logout') }}"
                        class="btn btn-primary">{{ 'nav.logout'|trans }}</a>
                 {% else %}
-                    <a href="{{ url('fos_user_registration_register') }}"
-                       class="btn btn-primary">{{ 'nav.register'|trans }}</a>
+                    {#<a href="{{ url('fos_user_registration_register') }}"
+                       class="btn btn-primary">{{ 'nav.register'|trans }}</a>#}
                     <a href="{{ url('fos_user_security_login') }}"
                        class="btn btn-primary">{{ 'nav.login'|trans }}</a>
-
                 {% endif %}
             </div>
         </div>

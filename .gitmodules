@@ -1,0 +1,3 @@
+[submodule "web/assets/ui"]
+	path = web/assets/ui
+	url = https://github.com/linkfloyd/FloydStyle.git
