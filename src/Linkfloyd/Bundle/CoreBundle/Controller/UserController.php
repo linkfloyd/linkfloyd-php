@@ -2,9 +2,7 @@
 
 namespace Linkfloyd\Bundle\CoreBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
-class UserController extends Controller
+class UserController extends BaseController
 {
     public function profileAction($username)
     {

@@ -5,11 +5,10 @@ namespace Linkfloyd\Bundle\CoreBundle\Controller;
 use Linkfloyd\Bundle\CoreBundle\Form\InsertPostForm;
 use Linkfloyd\Bundle\CoreBundle\Form\UpdatePostForm;
 use Linkfloyd\Bundle\CoreBundle\Security\PostVoter;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-class PostController extends Controller
+class PostController extends BaseController
 {
     public function indexAction()
     {
@@ -60,6 +59,8 @@ class PostController extends Controller
             }
         }
 
+        $this->setTitle('Yeni Link Floyd');
+
         return $this->render('LinkfloydCoreBundle:Post:insert_post.html.twig', array(
             'form' => $form->createView(),
         ));
@@ -101,6 +102,7 @@ class PostController extends Controller
                 'post_id' => $post->getId(),
             ]);
         }
+        $this->setTitle('Link Güncelle');
 
         return $this->render('LinkfloydCoreBundle:Post:update_post.html.twig', array(
             'form' => $form->createView(),

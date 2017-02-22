@@ -1,11 +1,17 @@
 {% extends "LinkfloydCoreBundle::layout.html.twig" %}
 
-{% block title %}LinkfloydCoreBundle:Post:insertPost{% endblock %}
-
 {% block main %}
     <div class="content">
-    {{ form_start(form, { 'action': path('core_bundle_post_insert'), 'attr': { 'class': '' } }) }}
-    {{ form_widget(form) }}
-    {{ form_end(form) }}
+        {{ form_start(form, { 'action': path('core_bundle_post_insert'), 'attr': { 'class': '' } }) }}
+        <div class="form-row">
+            {{ form_row(form.url, {'attr':{'class':'form-element'}}) }}
+        </div>
+        <div class="form-row">
+            {{ form_row(form.title, {'attr':{'class':'form-element'}}) }}
+        </div>
+        <div class="form-row text-right">
+            {{ form_row(form.submit, {'attr':{'class':'btn btn-info'}}) }}
+        </div>
+        {{ form_end(form) }}
     </div>
 {% endblock main %}

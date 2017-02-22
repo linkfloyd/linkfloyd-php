@@ -2,10 +2,9 @@
 
 namespace Linkfloyd\Bundle\CoreBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-class DefaultController extends Controller
+class DefaultController extends BaseController
 {
     public function indexAction(Request $request)
     {
@@ -13,6 +12,8 @@ class DefaultController extends Controller
         $postService = $this->get('linkfloyd.frontend.service.post_service');
 
         $posts = $postService->getPosts($page, $this->getParameter('homepage_listing_post_limit'));
+
+        $this->setTitle('LinkFloyd - Eski usül link paylaşım sitesi');
 
         return $this->render('LinkfloydCoreBundle:Default:index.html.twig', [
             'posts' => $posts,

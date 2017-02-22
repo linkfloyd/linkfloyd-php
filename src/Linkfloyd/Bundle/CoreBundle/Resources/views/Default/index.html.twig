@@ -3,7 +3,7 @@
 {% block main %}
 <div class="post-wrap">
     {% for post in posts %}
-        {% include '@LinkfloydCore/Post/post_template.html.twig' with {'post':post} %}
+        {% include '@LinkfloydCore/Post/partials/post_block.html.twig' with {'post':post} %}
     {% endfor %}
     <div class="pagerfanta">
         {{ pagerfanta(posts, 'twitter_bootstrap3') }}

@@ -1,10 +1,9 @@
 {% extends "LinkfloydCoreBundle::layout.html.twig" %}
 
 {% block main %}
-    <h4>{{ post.detail.title }}</h4>
+    <div class="content">
+        {% include '@LinkfloydCore/Post/partials/post_block.html.twig' with {post: post} %}
+    </div>
 
-    <br>
-    URL: <a href="{{ post.linkDetail.url}}">{{ post.linkDetail.url}} <small>({{ post.linkDetail.title}})</small></a>
-    <br>
     {% include 'FOSCommentBundle:Thread:async.html.twig' with {'id': 'post_'~post.id} %}
 {% endblock main %}
